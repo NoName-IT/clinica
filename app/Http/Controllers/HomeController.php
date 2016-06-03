@@ -60,13 +60,13 @@ class HomeController extends Controller
             echo $patient->internments[0]->id;
         }
 
-        dd($patients);
+        //dd($patients);
 
         //$patient_internment = Internment::where('patient_id',5)->get();
         $patient_internment = Internment::get();
 
 
-        dd($patient_internment[10]->patient->internments);
+        dd($patient_internment[10]->medics);
 
         //dd($patients->internments);
         //dd($patients[0]);

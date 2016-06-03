@@ -16,4 +16,9 @@ class Internment extends Model
     {
         return $this->belongsTo('App\Patient');
     }
+
+    public function medics()
+    {
+        return $this->belongsToMany('App\Medic')->withTimestamps();
+    }
 }

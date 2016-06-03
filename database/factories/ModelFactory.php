@@ -132,3 +132,23 @@ $factory->define(App\Witness::class, function (Faker\Generator $faker) {
         'responsible'       => false,
     ];
 });
+
+$factory->define(App\MedicType::class, function (Faker\Generator $faker) {
+
+    return [
+        'name' => $faker->word,
+    ];
+});
+
+$factory->define(App\Medic::class, function (Faker\Generator $faker) {
+    return [
+        'first_name'        => $faker->firstName,
+        'last_name'         => $faker->lastName,
+        'cuit'              => $faker->numberBetween(1010000010,2010000020),
+        'dni'               => $faker->numberBetween(9500000,45000000),
+        'license'           => $faker->numberBetween(111111,9999999),
+        'street_address'    => $faker->streetAddress,
+        'blood_type'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
+
+    ];
+});

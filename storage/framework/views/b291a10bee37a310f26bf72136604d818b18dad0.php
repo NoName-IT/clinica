@@ -1,0 +1,1 @@
+<?php echo app('translator')->get('auth.email_link'); ?>: <a href="<?php echo e($link = url('password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset())); ?>"> <?php echo e($link); ?> </a>

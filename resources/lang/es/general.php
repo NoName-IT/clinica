@@ -16,6 +16,9 @@ return [
     'full_title_tag' => 'Clínica Luminar',
     'title_tag' => 'Luminar',
     'home' => 'Dashboard',
-    'see_all_alerts' => 'Mirar todas las alertas',    
+    'see_all_alerts' => 'Mirar todas las alertas',
+    'patients' => 'Pacientes',
+    'coinsurances' => 'Coseguros',   
+    'medical_insurances' => 'Obras Sociales',   
 
 ];

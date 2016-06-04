@@ -107,7 +107,8 @@ $factory->define(App\Internment::class, function (Faker\Generator $faker) {
         'diagnostic' => $faker->catchPhrase,
         'room' => $faker->numberBetween(1,100),
         'clinic_history' => $faker->unique()->numberBetween(25345,60123),
-        'initial_date' => $faker->dateTimeThisYear,
+        //'initial_date' => $faker->dateTimeThisYear,
+        'initial_date' => $faker->dateTimeThisDecade,
         //'final_date' => date('Y-m-d H:i:s', strtotime($initial_date. " + ".$faker->numberBetween(50,100)." days"))."\n",
 
     ];

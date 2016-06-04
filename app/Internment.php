@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Internment extends Model
 {
@@ -21,4 +23,5 @@ class Internment extends Model
     {
         return $this->belongsToMany('App\Medic')->withTimestamps();
     }
+
 }

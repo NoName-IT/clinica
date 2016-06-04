@@ -7,18 +7,25 @@
 
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6" id="myfirstchart" style="height: 250px;"></div>
-                        <div class="col-md-6" id="area-example" style="height: 250px;"></div>
+                        <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.medical_insurances'); ?></h2></div>
+                        <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.coinsurances'); ?></h2></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" id="bar-example" style="height: 250px;"></div>
-                        <div class="col-md-6" id="donut-example" style="height: 250px;"></div>
+                        <div class="col-md-6" id="donut-graph1" style="height: 300px;"></div>
+                        <div class="col-md-6" id="donut-graph2" style="height: 300px;"></div>
+                    </div>
+
+                    <div class="col-md-12"><hr></div>
+
+                    <div class="row">
+                        <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.medical_insurances'); ?></h2></div>
+                        <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.coinsurances'); ?></h2></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" id="myfirstchart" style="height: 300px;"></div>
+                        <div class="col-md-6" id="area-example" style="height: 300px;"></div>
                     </div>                    
                 </div>
-
-                
-
-                
 
             </div>
         </div>
@@ -32,9 +39,31 @@
 
     $(document).ready(function (){
 
-            var root_url = "<?php echo e(URL::route("dashboard")); ?>";
+            var url = "<?php echo e(URL::route("dashboard")); ?>/";
 
-            alert(root_url);
+            //alert(root_url);
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {_token: CSRF_TOKEN},
+                dataType: 'JSON',
+                success: function (data) {
+                    //console.log(data.data1);
+
+                    new Morris.Donut({
+                      element: 'donut-graph1',
+                      data: data.graph1
+                    });
+                    new Morris.Donut({
+                      element: 'donut-graph2',
+                      data: data.graph2
+                    });
+                }
+            });
+
+        
 
             new Morris.Line({
           // ID of the element in which to draw the chart.
@@ -87,14 +116,7 @@
           ykeys: ['a', 'b'],
           labels: ['Series A', 'Series B']
         });
-            new Morris.Donut({
-          element: 'donut-example',
-          data: [
-            {label: "Download Sales", value: 12},
-            {label: "In-Store Sales", value: 30},
-            {label: "Mail-Order Sales", value: 20}
-          ]
-        });
+
     });
 
 </script>

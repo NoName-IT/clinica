@@ -10,6 +10,8 @@ use App\Coinsurance;
 use App\Paycheck;
 use App\Internment;
 use Carbon\Carbon;
+use DB;
+use Response;
 
 class HomeController extends Controller
 {
@@ -28,7 +30,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
         //$patient = Patient::where('id',5)->get();
@@ -122,6 +124,94 @@ class HomeController extends Controller
         */
         //dd($patients);
 
+        //$medicals = MedicalInsurance::distinct()->select('name')->get();
+        //$medicals = MedicalInsurance::with('patients')->groupBy('name')->get();
+        /*
+        $medicals = DB::table('medical_insurances')
+            ->leftJoin('medical_insurance_patient', 'medical_insurances.id', '=', 'medical_insurance_patient.medical_insurance_id')
+            ->select('name')
+            ->get();
+
+        */
+        /*
+        $medicals =  DB::table(
+            DB::table('medical_insurances')
+            ->leftJoin('medical_insurance_patient', 'medical_insurances.id', '=', 'medical_insurance_patient.medical_insurance_id')
+            ->select('name')
+            ->get()
+            )->select('name', DB::raw('COUNT(name) as count'))->get();
+
+        */
+
+        //dd($ppc);
+        //dd($ppmi);
+
+        //$patients = Patient::whereDate('birth_date', '>=', Carbon::now()->subYears(18))->get();
+
+        $internments = Internment::select('initial_date')->whereDate('initial_date', '>=', Carbon::now()->subYears(6))->get();
+ 
+        //DB::raw('COUNT(year) as value')
+        /*
+
+        $query = DB::table('internments')
+            ->select(DB::raw('YEAR(initial_date) as year'))
+            ->whereDate('initial_date', '>=', Carbon::now()->subYears(6));
+
+        $internments = $query->select(DB::raw('COUNT(year) as value'))->get();
+        */
+        /*
+        $query = DB::table('internments')
+            ->select(DB::raw('COUNT(year) as value'));
+        
+        */
+
+        //echo $query;
+        //dd($query);
+        /*
+        $internments = DB::table('internments')
+            ->select(DB::raw('YEAR(initial_date) as year'))
+            ->whereDate('initial_date', '>=', Carbon::now()->subYears(6))
+            ->get();
+        */
+
+        //$internments = DB::select(DB::raw('select * from internments'));
+
+        /*
+        $internments = DB::table('internments')
+            ->select(DB::raw('YEAR(initial_date) as year'))
+            ->whereDate('initial_date', '>=', Carbon::now()->subYears(6))
+            ->get();
+        */
+
+       
+        //dd($ppmi);
+        //dd($internments);
+
+        
+        
+        if($request->ajax()){
+
+            // Cantidad de pacientes por obras sociales
+            $ppmi = DB::table('medical_insurances')
+            ->leftJoin('medical_insurance_patient', 'medical_insurances.id', '=', 'medical_insurance_patient.medical_insurance_id')
+            ->select('name as label', DB::raw('COUNT(name) as value'))
+            ->groupBy('name')
+            ->get();
+
+            $ppc = DB::table('coinsurances')
+            ->leftJoin('coinsurance_patient', 'coinsurances.id', '=', 'coinsurance_patient.coinsurance_id')
+            ->select('name as label', DB::raw('COUNT(name) as value'))
+            ->groupBy('name')
+            ->get();
+        
+            return Response::json(array(
+                    'success' => true,
+                    'graph1'   => $ppmi,
+                    'graph2'   => $ppc
+                )); 
+
+
+        }
 
         return view('home');
     }

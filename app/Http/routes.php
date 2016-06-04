@@ -41,10 +41,5 @@ Route::get('/', [
 		'uses' => 'HomeController@index'
 	]);
 
-Route::get('/home', [
-		'as' => 'dashboard2',
-		'uses' => 'HomeController@index'
-	]);
-
 //Route::get('/home', 'HomeController@index');
 

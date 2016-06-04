@@ -54,19 +54,20 @@ class HomeController extends Controller
         // los pacientes menores de edad
         $patients = Patient::whereDate('birth_date', '>=', Carbon::now()->subYears(18))->get();
 
+        /*
         foreach ($patients as $patient) {
             # code...
             //dd($patient->internments[0]->id);
             echo $patient->internments[0]->id;
         }
-
+        */
         //dd($patients);
 
         //$patient_internment = Internment::where('patient_id',5)->get();
         $patient_internment = Internment::get();
 
 
-        dd($patient_internment[10]->medics);
+        //dd($patient_internment[10]->medics);
 
         //dd($patients->internments);
         //dd($patients[0]);
@@ -92,6 +93,8 @@ class HomeController extends Controller
 
         //dd($coinsurance->patients);
 
+        /*
+
         foreach ($patients as $patient) {
             # code...
 
@@ -116,8 +119,8 @@ class HomeController extends Controller
             //echo 'Obra Social: '.$patient->medical_insurances."\n";
             //echo 'Coseguro: '.$patient->coinsurances."\n\n";
         }
-
-        dd($patients);
+        */
+        //dd($patients);
 
 
         return view('home');

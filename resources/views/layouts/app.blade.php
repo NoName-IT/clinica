@@ -57,7 +57,7 @@
                 <!-- Left Side Of Navbar -->
                 @if (Auth::user())
                     <ul class="nav navbar-nav">
-                        <li><a href="{{ url('/home') }}">@lang('general.home')</a></li>
+                        <li><a href="{{ url('/') }}">@lang('general.home')</a></li>
                     </ul>
 
                 @endif

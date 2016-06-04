@@ -57,7 +57,7 @@
                 <!-- Left Side Of Navbar -->
                 <?php if(Auth::user()): ?>
                     <ul class="nav navbar-nav">
-                        <li><a href="<?php echo e(url('/home')); ?>"><?php echo app('translator')->get('general.home'); ?></a></li>
+                        <li><a href="<?php echo e(url('/')); ?>"><?php echo app('translator')->get('general.home'); ?></a></li>
                     </ul>
 
                 <?php endif; ?>

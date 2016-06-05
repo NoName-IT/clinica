@@ -11,19 +11,21 @@
                         <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.coinsurances'); ?></h2></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" id="donut-graph1" style="height: 300px;"></div>
-                        <div class="col-md-6" id="donut-graph2" style="height: 300px;"></div>
+                        <div class="col-md-6" id="donut-graph1" style="height: 250px;"></div>
+                        <div class="col-md-6" id="donut-graph2" style="height: 250px;"></div>
                     </div>
 
                     <div class="col-md-12"><hr></div>
 
                     <div class="row">
-                        <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.internments'); ?></h2></div>
-                        <div class="col-md-6"><h2 class="text-center"><?php echo app('translator')->get('general.coinsurances'); ?></h2></div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8"><h2 class="text-center"><?php echo app('translator')->get('general.internments'); ?></h2></div>
+                        <div class="col-md-2"></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" id="line-graph1" style="height: 300px;"></div>
-                        <div class="col-md-6" id="area-example" style="height: 300px;"></div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8" id="line-graph1" style="height: 300px;"></div>
+                        <div class="col-md-2"></div>
                     </div>                    
                 </div>
 
@@ -77,41 +79,6 @@
 
                 }
             });
-
-        
-
-            
-
-            new Morris.Area({
-          element: 'area-example',
-          data: [
-            { y: '2006', a: 100, b: 90 },
-            { y: '2007', a: 75,  b: 65 },
-            { y: '2008', a: 50,  b: 40 },
-            { y: '2009', a: 75,  b: 65 },
-            { y: '2010', a: 50,  b: 40 },
-            { y: '2011', a: 75,  b: 65 },
-            { y: '2012', a: 100, b: 90 }
-          ],
-          xkey: 'y',
-          ykeys: ['a', 'b'],
-          labels: ['Series A', 'Series B']
-        });
-            new Morris.Bar({
-          element: 'bar-example',
-          data: [
-            { y: '2006', a: 100, b: 90 },
-            { y: '2007', a: 75,  b: 65 },
-            { y: '2008', a: 50,  b: 40 },
-            { y: '2009', a: 75,  b: 65 },
-            { y: '2010', a: 50,  b: 40 },
-            { y: '2011', a: 75,  b: 65 },
-            { y: '2012', a: 100, b: 90 }
-          ],
-          xkey: 'y',
-          ykeys: ['a', 'b'],
-          labels: ['Series A', 'Series B']
-        });
 
     });
 

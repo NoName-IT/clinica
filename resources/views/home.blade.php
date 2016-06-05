@@ -20,11 +20,11 @@
                     <div class="col-md-12"><hr></div>
 
                     <div class="row">
-                        <div class="col-md-6"><h2 class="text-center">@lang('general.medical_insurances')</h2></div>
+                        <div class="col-md-6"><h2 class="text-center">@lang('general.internments')</h2></div>
                         <div class="col-md-6"><h2 class="text-center">@lang('general.coinsurances')</h2></div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6" id="myfirstchart" style="height: 300px;"></div>
+                        <div class="col-md-6" id="line-graph1" style="height: 300px;"></div>
                         <div class="col-md-6" id="area-example" style="height: 300px;"></div>
                     </div>                    
                 </div>
@@ -62,31 +62,27 @@
                       element: 'donut-graph2',
                       data: data.graph2
                     });
+
+                    new Morris.Line({
+
+                      element: 'line-graph1',
+
+                      data: data.graph3,
+
+                      xkey: 'year',
+
+                      ykeys: ['value'],
+
+                      labels: ['Pacientes']
+                    });
+
+
                 }
             });
 
         
 
-            new Morris.Line({
-          // ID of the element in which to draw the chart.
-          element: 'myfirstchart',
-          // Chart data records -- each entry in this array corresponds to a point on
-          // the chart.
-          data: [
-            { year: '2008', value: 20 },
-            { year: '2009', value: 10 },
-            { year: '2010', value: 5 },
-            { year: '2011', value: 5 },
-            { year: '2012', value: 20 }
-          ],
-          // The name of the data record attribute that contains x-values.
-          xkey: 'year',
-          // A list of names of data record attributes that contain y-values.
-          ykeys: ['value'],
-          // Labels for the ykeys -- will be displayed when you hover over the
-          // chart.
-          labels: ['Value']
-        });
+            
 
             new Morris.Area({
           element: 'area-example',

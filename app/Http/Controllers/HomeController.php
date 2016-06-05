@@ -149,6 +149,18 @@ class HomeController extends Controller
         //$patients = Patient::whereDate('birth_date', '>=', Carbon::now()->subYears(18))->get();
 
         $internments = Internment::select('initial_date')->whereDate('initial_date', '>=', Carbon::now()->subYears(6))->get();
+
+        $temptable = DB::raw("(select *, YEAR(initial_date) as year from internments) as temp");
+
+        $internments = DB::table('patients')
+                        //->select('temp.year', DB::raw('COUNT(year) as value'))
+                        ->select('*', DB::raw('FLOOR(DATEDIFF(initial_date, birth_date)/365) as age'))
+                        ->leftJoin($temptable, 'temp.patient_id', '=', 'patients.id')
+                        //->groupBy('temp.year')
+                        ->whereDate('initial_date', '>=', Carbon::now()->subYears(6))
+                        ->get();
+
+        //dd($internments);
  
         //DB::raw('COUNT(year) as value')
         /*
@@ -203,11 +215,21 @@ class HomeController extends Controller
             ->select('name as label', DB::raw('COUNT(name) as value'))
             ->groupBy('name')
             ->get();
+
+            $temptable = DB::raw("(select id, YEAR(initial_date) as year from internments) as temp");
+
+            $ppy = DB::table('internments')
+                        ->select('temp.year', DB::raw('COUNT(year) as value'))
+                        ->leftJoin($temptable, 'temp.id', '=', 'internments.id')
+                        ->groupBy('temp.year')
+                        ->whereDate('initial_date', '>=', Carbon::now()->subYears(6))
+                        ->get();
         
             return Response::json(array(
-                    'success' => true,
-                    'graph1'   => $ppmi,
-                    'graph2'   => $ppc
+                    'success'   => true,
+                    'graph1'    => $ppmi,
+                    'graph2'    => $ppc,
+                    'graph3'    => $ppy
                 )); 
 
 

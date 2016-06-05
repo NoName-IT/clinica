@@ -20,5 +20,6 @@ return [
     'patients' => 'Pacientes',
     'coinsurances' => 'Coseguros',   
     'medical_insurances' => 'Obras Sociales',   
+    'internments' => 'Internaciones',   
 
 ];

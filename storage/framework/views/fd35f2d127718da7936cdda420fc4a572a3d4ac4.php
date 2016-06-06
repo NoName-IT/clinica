@@ -14,9 +14,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <?php /* <link href="<?php echo e(elixir('css/app.css')); ?>" rel="stylesheet"> */ ?>
+    
 
-    <link href="<?php echo asset('css/app.css'); ?>" media="all" rel="stylesheet" type="text/css" />
 
 
      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -24,6 +23,7 @@
      <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
      <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
    
+   <link href="<?php echo asset('css/app.css'); ?>" media="all" rel="stylesheet" type="text/css" />
 
     <style>
         body {
@@ -56,13 +56,7 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
-                <?php if(Auth::user()): ?>
-                    <ul class="nav navbar-nav">
-                        <li><a href="<?php echo e(url('/')); ?>"><?php echo app('translator')->get('general.home'); ?></a></li>
-                    </ul>
-
-                <?php endif; ?>
-
+                
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
@@ -101,6 +95,7 @@
                             </a>
 
                             <ul class="dropdown-menu" role="menu">
+                                <li><a href="<?php echo e(url('/admin/users')); ?>"><i class="fa fa-btn fa-users"></i><?php echo app('translator')->get('general.users'); ?></a></li>
                                 <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-btn fa-user"></i><?php echo app('translator')->get('auth.change_password_tag'); ?></a></li>
                                 <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-btn fa-sign-out"></i><?php echo app('translator')->get('auth.logout_tag'); ?></a></li>
                             </ul>

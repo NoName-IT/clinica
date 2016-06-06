@@ -16,10 +16,18 @@ return [
     'full_title_tag' => 'Clínica Luminar',
     'title_tag' => 'Luminar',
     'home' => 'Dashboard',
+    'dashboard' => 'Dashboard',
     'see_all_alerts' => 'Mirar todas las alertas',
     'patients' => 'Pacientes',
     'coinsurances' => 'Coseguros',   
     'medical_insurances' => 'Obras Sociales',   
     'internments' => 'Internaciones',   
+    'users' => 'Usuarios',
+    'create_user' => 'Crear Usuario',
+    'id' => 'Identificacion',
+    'name' => 'Nombre',
+    'email' => 'Correo Electronico',
+    'actions' => 'Acciones',
+    'user_created' => 'Usuario creado exitosamente!!!',
 
 ];

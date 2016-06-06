@@ -5,7 +5,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">@lang('general.home')</div>
+                <div class="panel-heading">
+
+                    <ol class="breadcrumb">
+                        <li class="active">@lang('general.dashboard')</li>
+                    </ol>
+                    
+                </div>
 
                 <div class="panel-body">
                     <div class="row">

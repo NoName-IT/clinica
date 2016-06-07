@@ -30,6 +30,7 @@ class CreatePatientsTable extends Migration
             $table->boolean('medical_insurance_copy');
             $table->boolean('status');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

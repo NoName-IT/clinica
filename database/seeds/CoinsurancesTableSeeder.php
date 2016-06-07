@@ -58,7 +58,7 @@ class CoinsurancesTableSeeder extends Seeder
 
         }
 
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 1000; $i++) {
             
             factory(App\CoinsurancePatient::class)->create([
                     'patient_id' => $faker->unique()->randomElement($array_patients), 

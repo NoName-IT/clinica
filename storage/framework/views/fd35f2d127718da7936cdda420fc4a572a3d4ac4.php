@@ -96,7 +96,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="<?php echo e(url('/admin/users')); ?>"><i class="fa fa-btn fa-users"></i><?php echo app('translator')->get('general.users'); ?></a></li>
-                                <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-btn fa-user"></i><?php echo app('translator')->get('auth.change_password_tag'); ?></a></li>
+                                <li><a href="<?php echo e(route('admin.users.edit',Auth::user()->id)); ?>"><i class="fa fa-btn fa-user"></i><?php echo app('translator')->get('auth.change_password_tag'); ?></a></li>
                                 <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-btn fa-sign-out"></i><?php echo app('translator')->get('auth.logout_tag'); ?></a></li>
                             </ul>
                         </li>

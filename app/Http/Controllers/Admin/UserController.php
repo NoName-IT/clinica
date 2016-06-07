@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Validator;
 use Laracasts\Flash\Flash;
-
+//use App\Http\Controllers\Auth;
+use Auth;
 
 class UserController extends Controller
 {
@@ -21,7 +23,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // Para obtener el usuario autenticado
+        //dd(Auth::user()->id);
+        
         $users = User::orderBy('id','ASC')->paginate(5);
 
         return view('admin.users.index')->with('users', $users);
@@ -68,6 +72,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -79,6 +84,8 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = User::findOrFail($id);
+        return view('admin.users.edit')->with('user', $user);
     }
 
     /**
@@ -88,10 +95,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        
+        if ($request->password){
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+
+        Flash::success(trans('general.user_edited'));
+
+        return redirect()->route('admin.users.index');
+
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -102,5 +124,20 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        if(Auth::user()->id == $id){
+            
+            Flash::error(trans('general.user_self_deleted'));
+
+        }else{
+
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            Flash::error(trans('general.user_deleted'));
+
+        }
+
+        return redirect()->route('admin.users.index');
+
     }
 }

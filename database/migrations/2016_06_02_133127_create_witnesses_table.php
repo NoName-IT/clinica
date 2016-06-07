@@ -26,6 +26,7 @@ class CreateWitnessesTable extends Migration
             $table->string('phone',50);
             $table->boolean('responsible');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('internment_id')->references('id')->on('internments');
             $table->foreign('relationship_id')->references('id')->on('relationships');

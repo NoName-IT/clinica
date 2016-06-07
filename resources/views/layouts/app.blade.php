@@ -96,7 +96,7 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{ url('/admin/users') }}"><i class="fa fa-btn fa-users"></i>@lang('general.users')</a></li>
-                                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-user"></i>@lang('auth.change_password_tag')</a></li>
+                                <li><a href="{{ route('admin.users.edit',Auth::user()->id) }}"><i class="fa fa-btn fa-user"></i>@lang('auth.change_password_tag')</a></li>
                                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>@lang('auth.logout_tag')</a></li>
                             </ul>
                         </li>

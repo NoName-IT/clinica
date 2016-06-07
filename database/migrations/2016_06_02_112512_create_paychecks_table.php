@@ -31,6 +31,7 @@ class CreatePaychecksTable extends Migration
             $table->timestamps();
 
             $table->foreign('patient_id')->references('id')->on('patients');
+            $table->softDeletes();
         });
     }
 

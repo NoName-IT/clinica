@@ -23,6 +23,7 @@ class CreateMedicsTable extends Migration
             $table->string('street_address',150);
             $table->integer('blood_type');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('medic_type_id')->references('id')->on('medic_types');
 
@@ -37,6 +38,7 @@ class CreateMedicsTable extends Migration
             $table->foreign('medic_id')->references('id')->on('medics');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -21,8 +21,10 @@ class CreateInternmentsTable extends Migration
             $table->dateTime('final_date');
             $table->integer('clinic_history');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('patient_id')->references('id')->on('patients');
+
         });
     }
 

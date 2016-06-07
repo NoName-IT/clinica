@@ -26,8 +26,12 @@ return [
     'create_user' => 'Crear Usuario',
     'id' => 'Identificacion',
     'name' => 'Nombre',
-    'email' => 'Correo Electronico',
+    'email' => 'Correo Electrónico',
     'actions' => 'Acciones',
     'user_created' => 'Usuario creado exitosamente!!!',
-
+    'user_edited' => 'Usuario editado exitosamente!!!',
+    'user_edit' => 'Editar Usuario',
+    'user_deleted' => 'Usuario eliminado exitosamente!!!',
+    'user_self_deleted' => 'Auto-Eliminación no permitida!!!',
+    
 ];

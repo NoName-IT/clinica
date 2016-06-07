@@ -198,9 +198,7 @@ class HomeController extends Controller
        
         //dd($ppmi);
         //dd($internments);
-
-        
-        
+       
         if($request->ajax()){
 
             // Cantidad de pacientes por obras sociales

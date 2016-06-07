@@ -36,12 +36,19 @@
                                     <td><?php echo e($user->name); ?></td>
                                     <td><?php echo e($user->email); ?></td>
                                     <td>
-                                        <a href="" class="btn btn-danger">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </a> 
-                                        <a href="" class="btn btn-warning">
+                                        <a href="<?php echo e(route('admin.users.edit',$user->id)); ?>" class="btn btn-warning">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
+                                        <?php if(Auth::user()->id == $user->id): ?>
+                                            <a href="#!" class="btn btn-danger" disabled>
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        <?php else: ?>
+                                            <a href="<?php echo e(route('admin.users.destroy',$user->id)); ?>" class="btn btn-danger">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        <?php endif; ?>
+
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

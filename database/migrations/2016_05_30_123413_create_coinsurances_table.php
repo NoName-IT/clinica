@@ -24,6 +24,7 @@ class CreateCoinsurancesTable extends Migration
             $table->decimal('iva', 7, 2);
 
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('coinsurance_patient', function (Blueprint $table) {
@@ -38,6 +39,7 @@ class CreateCoinsurancesTable extends Migration
             $table->foreign('coinsurance_id')->references('id')->on('coinsurances');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

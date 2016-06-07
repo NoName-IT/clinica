@@ -23,6 +23,7 @@ class CreateMedicalInsurancesTable extends Migration
             $table->decimal('coverage', 5, 2);
             $table->decimal('iva', 7, 2);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('medical_insurance_patient', function (Blueprint $table) {
@@ -33,9 +34,11 @@ class CreateMedicalInsurancesTable extends Migration
             $table->dateTime('initial_date');
             $table->dateTime('final_date');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('medical_insurance_id')->references('id')->on('medical_insurances');
+
 
         });
     }

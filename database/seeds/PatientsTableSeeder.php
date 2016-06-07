@@ -15,6 +15,6 @@ class PatientsTableSeeder extends Seeder
 
         //DB::table('patients')->truncate();
 
-        factory(App\Patient::class, 170)->create();
+        factory(App\Patient::class, 1500)->create();
     }
 }

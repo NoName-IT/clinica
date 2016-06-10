@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
+
 
 
 class Patient extends Model
@@ -39,11 +41,15 @@ class Patient extends Model
     ];
     **/
 
+    public function getAgeAttribute() 
+    {
+        return Carbon::now()->diffInYears(new Carbon($this->birth_date));
+    }
+
     public function getFullNameAttribute() 
     {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
-
 
     public function medical_insurances()
     {
@@ -63,6 +69,21 @@ class Patient extends Model
     public function internments()
     {
         return $this->hasMany('App\Internment');
+    }
+
+    public function blood_type()
+    {
+        return $this->belongsTo('App\BloodType');
+    }
+
+    public function civil_status()
+    {
+        return $this->belongsTo('App\CivilStatus');
+    }
+
+    public function dni_type()
+    {
+        return $this->belongsTo('App\DniType');
     }
 
 }

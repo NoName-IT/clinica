@@ -51,3 +51,9 @@ Route::group(['prefix' => 'admin'], function (){
 		'uses' => 'Admin\UserController@destroy'
 	]);
 });
+
+Route::resource('patients', 'Patient\PatientController');
+Route::get('patients/{users}/destroy', [
+	'as' => 'patients.destroy',
+	'uses' => 'Patient\PatientController@destroy'
+]);

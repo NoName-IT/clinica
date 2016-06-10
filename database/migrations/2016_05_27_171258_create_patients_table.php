@@ -19,18 +19,22 @@ class CreatePatientsTable extends Migration
             $table->date('birth_date');
             $table->integer('birth_town');
             $table->time('birth_time');
-            $table->boolean('civil_status');
-            $table->integer('dni_type');
+            $table->integer('civil_status_id')->unsigned();
+            $table->integer('dni_type_id')->unsigned();
             $table->integer('dni');
             $table->string('street_address',150);
             $table->integer('town');
             $table->string('phone',50);
-            $table->integer('blood_type');
+            $table->integer('blood_type_id')->unsigned();;
             $table->boolean('dni_copy');
             $table->boolean('medical_insurance_copy');
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('civil_status_id')->references('id')->on('civil_statuses');
+            $table->foreign('blood_type_id')->references('id')->on('blood_types');
+            $table->foreign('dni_type_id')->references('id')->on('dni_types');
         });
     }
 

@@ -27,13 +27,13 @@ $factory->define(App\Patient::class, function (Faker\Generator $faker) {
         'birth_date'        => $faker->date,
         'birth_town'        => $faker->randomElement($array = array (1,2,3,4,5,6,7,8,9,10,11,12)),
         'birth_time'        => $faker->time,
-        'civil_status'      => $faker->boolean,
-        'dni_type'          => $faker->randomElement($array = array (1,2,3,4)),
+        'civil_status_id'      => $faker->randomElement($array = array (1,2)),
+        'dni_type_id'          => $faker->randomElement($array = array (1,2,3,4)),
         'dni'               => $faker->numberBetween(9500000,45000000),
         'street_address'    => $faker->streetAddress,
         'town'              => $faker->randomElement($array = array (1,2,3,4,5,6,7,8,9,10,11,12)),
         'phone'             => $faker->e164PhoneNumber,
-        'blood_type'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
+        'blood_type_id'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
         'dni_copy'          => $faker->boolean,
         'medical_insurance_copy' => $faker->boolean,
         'status' => $faker->boolean,
@@ -151,5 +151,23 @@ $factory->define(App\Medic::class, function (Faker\Generator $faker) {
         'street_address'    => $faker->streetAddress,
         'blood_type'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
 
+    ];
+});
+
+$factory->define(App\CivilStatus::class, function (Faker\Generator $faker) {
+    return [
+        'name'        => $faker->unique()->randomElement($array = array ('soltero', 'casado')),
+    ];
+});
+
+$factory->define(App\BloodType::class, function (Faker\Generator $faker) {
+    return [
+        'name'        => $faker->unique()->randomElement($array = array ('+0', '-0', '+B', '-B', '+A', '-A', '+AB', '-AB')),
+    ];
+});
+
+$factory->define(App\DniType::class, function (Faker\Generator $faker) {
+    return [
+        'name'        => $faker->unique()->randomElement($array = array ('DNI', 'LE', 'LC', 'LD')),
     ];
 });

@@ -10,11 +10,15 @@ use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Validator;
 use Laracasts\Flash\Flash;
-//use App\Http\Controllers\Auth;
 use Auth;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     /**
      * Display a listing of the resource.
@@ -23,9 +27,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        // Para obtener el usuario autenticado
-        //dd(Auth::user()->id);
-        
         $users = User::orderBy('id','ASC')->paginate(5);
 
         return view('admin.users.index')->with('users', $users);

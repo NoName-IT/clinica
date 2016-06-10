@@ -109,7 +109,7 @@ return [
         'name' => 'nombre',
         'email' => 'correo electrónico',
         'password' => 'contraseña',
-
+        'dni_copy' => 'Copia DNI',
     ],
 
 ];

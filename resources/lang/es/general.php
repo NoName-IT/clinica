@@ -24,6 +24,7 @@ return [
     'internments' => 'Internaciones',   
     'users' => 'Usuarios',
     'create_user' => 'Crear Usuario',
+    'create_patient' => 'Crear Paciente',
     'id' => 'Identificacion',
     'name' => 'Nombre',
     'email' => 'Correo Electrónico',
@@ -33,5 +34,11 @@ return [
     'user_edit' => 'Editar Usuario',
     'user_deleted' => 'Usuario eliminado exitosamente!!!',
     'user_self_deleted' => 'Auto-Eliminación no permitida!!!',
+    'full_name' => 'Nombre',
+    'dni' => 'DNI',
+    'birth_date' => 'Fecha Nacimiento',
+    'age' => 'Edad',
+    'civil_status' => 'Estado Civil',
+    'patient_module' => 'Pacientes',
     
 ];

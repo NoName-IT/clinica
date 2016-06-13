@@ -19,4 +19,44 @@
                 toggleKeyCodes: [0, 1]
             });
 
+            // Eliminacion de row
+            $('.btn-danger').click(function (e) {
+                // body...
+                e.preventDefault();
+
+                            var row = $(this).parents('tr');
+                            var id = row.data('id');
+                            var form = $('#form-delete');
+                            var url = form.attr('action').replace(':USER_ID', id);
+                            var data = form.serialize();
+
+                $.confirm({
+                        title: 'Confirmación:',
+                        content: 'Desea Eliminar el item!!!',
+                        confirmButton: 'Si',
+                        cancelButton: 'NO',
+                        backgroundDismiss: true,
+                        theme: 'black',
+                        keyboardEnabled: true,
+                        confirmButtonClass: 'btn-success',
+                        cancelButtonClass: 'btn-danger',
+                        confirm: function(){
+                
+                            
+                            $.post(url, data, function (result) {
+                                // body...
+                                row.fadeOut();
+                                //alert(id);
+                                
+                                //$('.users').html(result);
+                                //$('.ajax-message').html('<div class="alert alert-success" id="hide"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Usuario Eliminado exitosamente!!!</div>');
+
+                            });
+                        }
+                    });
+
+                
+
+            });
+
         });

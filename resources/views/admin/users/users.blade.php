@@ -1,31 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <ol class="breadcrumb">
-                        <li class="active">@lang('general.users')</li>
-                    </ol>
-                </div>
-
-                <div class="panel-body" >
-
-                     @include('flash::message')
-
-                    <div class='ajax-message'>
-                    </div>
 
 
-                    <a href="{{ url('/admin/users/create') }}" class="btn btn-success">
-                        <i class="fa fa-user-plus" aria-hidden="true"></i> @lang('general.create_user')
-                    </a>
-
-                    <div class="users">
-                    
-                        <table class="table table-striped">
+                <table class="table table-striped">
                             <thead>
                                 <th>@lang('general.id')</th>
                                 <th>@lang('general.name')</th>
@@ -63,24 +38,5 @@
                             </tbody>
                         </table>
 
-
                         
                         {!! $users->render() !!}
-                    </div>
-                   
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
-
- <form class="form-horizontal" id="form-delete" role="form" method="POST" action="{{ url('/admin/users/:USER_ID') }}">
-    {{ csrf_field() }}
-    <input type="hidden" name="_method" value="DELETE">
-</form>
-
-
-
-@endsection

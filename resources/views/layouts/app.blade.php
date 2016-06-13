@@ -39,6 +39,10 @@
 
     <script src="{!! asset('bower_components/bootstrap-checkbox/js/bootstrap-checkbox.js') !!}" defer></script>
 
+    <link rel="stylesheet" href="{!! asset('bower_components/jquery-confirm/dist/jquery-confirm.min.css') !!}" />
+
+    <script src="{!! asset('bower_components/jquery-confirm/dist/jquery-confirm.min.js') !!}" defer></script>
+
     <style>
         body {
             font-family: 'Lato';

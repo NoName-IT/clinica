@@ -59,7 +59,7 @@ class MedicalsInsurancesTableSeeder extends Seeder
         }
 
         $i=1;
-        for ($i = 1; $i <= 100; $i++) {
+        for ($i = 1; $i <= 170; $i++) {
         	
             factory(App\MedicalInsurancePatient::class)->create([
             		'patient_id' => $faker->unique()->randomElement($array_patients), 
@@ -81,7 +81,8 @@ class MedicalsInsurancesTableSeeder extends Seeder
         $i=1;
         for ($i = 1; $i <= 20; $i++) {
             
-            $id = $faker->unique()->randomElement($array_patients2);
+            //$id = $faker->unique()->randomElement($array_patients2);
+            $id = $faker->randomElement($array_patients2);
 
             $my_patient = App\MedicalInsurancePatient::where('patient_id', $id)
                                         ->first();

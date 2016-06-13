@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('id','ASC')->paginate(5);
+        $users = User::orderBy('id','ASC')->paginate(10);
 
         return view('admin.users.index')->with('users', $users);
 
@@ -122,9 +122,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
-        //
+        
         if(Auth::user()->id == $id){
             
             Flash::error(trans('general.user_self_deleted'));
@@ -134,11 +134,30 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             $user->delete();
 
-            Flash::error(trans('general.user_deleted'));
+            //Flash::error(trans('general.user_deleted'));
 
         }
 
-        return redirect()->route('admin.users.index');
+        //return response()->json(view('admin.users.users'))->render();
+
+        if ($request->ajax()){
+            //$users = User::orderBy('id','ASC')->paginate(5);
+            //return ($id);
+            $users = User::orderBy('id','ASC')->paginate(5);
+
+            return response()->json(view('admin.users.users',compact('users'))->render());
+
+
+        }else{
+            return redirect()->route('admin.users.index');    
+        }
+        
+        
+        
+        
 
     }
+
+    //return $id;
+
 }

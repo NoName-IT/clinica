@@ -153,3 +153,21 @@ $factory->define(App\Medic::class, function (Faker\Generator $faker) {
 
     ];
 });
+
+$factory->define(App\Province::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+    ];
+});
+$factory->define(App\Department::class, function (Faker\Generator $faker) {
+    return [
+        'province_id' => $faker->numberBetween(000,222),
+        'name' => $faker->name        
+    ];
+});
+$factory->define(App\City::class, function (Faker\Generator $faker) {
+    return [
+        'department_id' => $faker->numberBetween(000,222),
+        'name' => $faker->name,
+    ];
+});

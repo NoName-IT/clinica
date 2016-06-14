@@ -20,10 +20,28 @@
 
      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
      <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
      <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-   
-   <link href="{!! asset('css/app.css') !!}" media="all" rel="stylesheet" type="text/css" />
+
+     <link href="{!! asset('css/app.css') !!}" media="all" rel="stylesheet" type="text/css" />
+
+     <script type="text/javascript" src="{!! asset('bower_components/moment/min/moment-with-locales.min.js') !!}"></script>
+     <script type="text/javascript" src="{!! asset('bower_components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') !!}"></script>
+
+    <link rel="stylesheet" href="{!! asset('bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css') !!}" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+    <script src="{!! asset('bower_components/bootstrap-checkbox/js/bootstrap-checkbox.js') !!}" defer></script>
+
+    <link rel="stylesheet" href="{!! asset('bower_components/jquery-confirm/dist/jquery-confirm.min.css') !!}" />
+
+    <script src="{!! asset('bower_components/jquery-confirm/dist/jquery-confirm.min.js') !!}" defer></script>
 
     <style>
         body {
@@ -51,6 +69,9 @@
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
                     @lang('general.title_tag')
+                </a>
+                 <a class="navbar-brand" href="{{ url('/patients') }}">
+                    @lang('general.patient_module')
                 </a>
             </div>
 
@@ -111,7 +132,9 @@
     <!-- JavaScripts -->
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+    <script src="{!! asset('js/app.js') !!}"></script>
+
+    
 
 
 

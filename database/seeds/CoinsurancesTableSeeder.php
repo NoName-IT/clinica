@@ -58,7 +58,7 @@ class CoinsurancesTableSeeder extends Seeder
 
         }
 
-        for ($i = 1; $i <= 1000; $i++) {
+        for ($i = 1; $i <= 100; $i++) {
             
             factory(App\CoinsurancePatient::class)->create([
                     'patient_id' => $faker->unique()->randomElement($array_patients), 
@@ -80,8 +80,11 @@ class CoinsurancesTableSeeder extends Seeder
         $i=1;
         for ($i = 1; $i <= 10; $i++) {
             
-            $id = $faker->unique()->randomElement($array_patients2);
+            //$id = $faker->unique()->randomElement($array_patients2);
 
+            $id = $faker->randomElement($array_patients2);
+
+    
             $my_patient = App\CoinsurancePatient::where('patient_id', $id)
                                         ->first();
 

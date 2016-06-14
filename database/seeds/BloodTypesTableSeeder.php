@@ -13,7 +13,7 @@ class BloodTypesTableSeeder extends Seeder
     {
         //
 
-        $blood_types = array ('+0', '-0', '+B', '-B', '+A', '-A', '+AB', '-AB');
+        $blood_types = array ('0+', '0-', 'B+', 'B-', 'A+', 'A-', 'AB+', 'AB-');
 
         foreach ($blood_types as $blood_type) {
             # code...

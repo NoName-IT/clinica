@@ -14,12 +14,6 @@
 
                 <div class="panel-body">
 
-                @foreach($coinsurances as $coinsurance)
-
-                    {{ $coinsurance->name }}
-                                    
-                @endforeach
-
                    	<form class="form-horizontal" role="form" method="POST" action="{{ url('/patients') }}">
                         {{ csrf_field() }}
 
@@ -125,6 +119,28 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('dni_type') ? ' has-error' : '' }}">
+                            <label for="dni_type" class="col-md-4 control-label">@lang('patient.dni_type')</label>
+
+                            <div class="col-md-2">
+
+                                <select class="form-control selectpicker" name="dni_type">
+
+                                    @foreach($dni_types as $dni_type)
+
+                                        <option value="{{ $dni_type->id }}">{{ $dni_type->name }}</option>
+                                    
+                                    @endforeach
+                                </select> 
+
+                                @if ($errors->has('dni_type'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dni_type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
                                 <label for="dni" class="col-md-4 control-label">@lang('patient.dni')</label>
 
@@ -194,6 +210,53 @@
                                     @endif
                                 </div>
                             </div>
+
+                        <div class="form-group{{ $errors->has('medical_insurance') ? ' has-error' : '' }}">
+                            <label for="medical_insurance" class="col-md-4 control-label">@lang('patient.medical_insurance')</label>
+
+                            <div class="col-md-3">
+
+                                <select class="form-control selectpicker" name="medical_insurance">
+
+                                    @foreach($medical_insurances as $medical_insurance)
+
+                                        <option value="{{ $medical_insurance->id }}">{{ $medical_insurance->name }} - {{ $medical_insurance->affiliate_type }} - {{ $medical_insurance->module }}</option>
+                                    
+                                    @endforeach
+                                </select> 
+
+                                @if ($errors->has('medical_insurance'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('medical_insurance') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('coinsurance') ? ' has-error' : '' }}">
+                            <label for="coinsurance" class="col-md-4 control-label">@lang('patient.coinsurance')</label>
+
+                            <div class="col-md-3">
+
+                                <select class="form-control selectpicker" name="coinsurance">
+
+                                    @foreach($coinsurances as $coinsurance)
+
+                                        <option value="{{ $coinsurance->id }}">{{ $coinsurance->name }} - {{ $coinsurance->affiliate_type }} - {{ $coinsurance->module }}</option>
+                                    
+                                    @endforeach
+                                </select> 
+
+                                @if ($errors->has('coinsurance'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('coinsurance') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        
 
                             
                         

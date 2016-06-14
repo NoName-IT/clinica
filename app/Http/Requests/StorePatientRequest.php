@@ -34,9 +34,16 @@ class StorePatientRequest extends Request
             'dni' => 'required|integer',
             'street_address' => 'required|string',
             'phone' => 'required|integer',
-            'dni_copy' => 'boolean',              
+            'dni_copy' => 'boolean',
+            'coinsurance' => 'required|exists:coinsurances,id',
+            'medical_insurance' => 'required|exists:medical_insurances,id',
+            'dni_type' => 'required|exists:dni_types,id',
+
+
+
             */
-            'blood_type' => 'required|exists:blood_types,id',
+
+            
 
         ];
     }

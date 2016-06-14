@@ -76,7 +76,7 @@
     </div>
 </div>
 
- <form class="form-horizontal" id="form-delete" role="form" method="POST" action="{{ url('/admin/users/:USER_ID') }}">
+ <form class="form-horizontal" id="form-delete" role="form" method="POST" action="{{ url('/admin/users/:MY_ID') }}">
     {{ csrf_field() }}
     <input type="hidden" name="_method" value="DELETE">
 </form>

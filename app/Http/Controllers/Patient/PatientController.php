@@ -10,9 +10,11 @@ use Validator;
 use Laracasts\Flash\Flash;
 use Auth;        
 use App\Patient;
+use App\DniType;
 use App\BloodType; 
 use App\CivilStatus;
 use App\Coinsurance;
+use App\MedicalInsurance;
 
 
 class PatientController extends Controller
@@ -44,10 +46,10 @@ class PatientController extends Controller
         $blood_types = BloodType::get();
         $civil_statuses = CivilStatus::get();
         $coinsurances = Coinsurance::get();
+        $medical_insurances = MedicalInsurance::get();
+        $dni_types = DniType::get();
 
-        //dd($blood_types);
-
-        return view('patients.create')->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances);
+        return view('patients.create')->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances)->with('medical_insurances', $medical_insurances)->with('dni_types', $dni_types);
     }
 
     /**
@@ -105,5 +107,9 @@ class PatientController extends Controller
     public function destroy($id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        $patient->delete();
+
+        return trans('patient.patient_deleted');
     }
 }

@@ -24,5 +24,6 @@ return [
     'phone' => 'Teléfono',
     'dni_copy' => 'Copia DNI',
     'medical_insurance_copy' => 'Copia Obra Social',
+    'patient_deleted' => 'Paciente eliminado exitosamente!!!',
     
 ];

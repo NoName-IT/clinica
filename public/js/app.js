@@ -24,11 +24,11 @@
                 // body...
                 e.preventDefault();
 
-                            var row = $(this).parents('tr');
-                            var id = row.data('id');
-                            var form = $('#form-delete');
-                            var url = form.attr('action').replace(':USER_ID', id);
-                            var data = form.serialize();
+                var row = $(this).parents('tr');
+                var id = row.data('id');
+                var form = $('#form-delete');
+                var url = form.attr('action').replace(':MY_ID', id);
+                var data = form.serialize();
 
                 $.confirm({
                         title: 'Confirmación:',
@@ -48,8 +48,7 @@
                                 row.fadeOut();
                                 //alert(id);
                                 
-                                //$('.users').html(result);
-                                //$('.ajax-message').html('<div class="alert alert-success" id="hide"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>Usuario Eliminado exitosamente!!!</div>');
+                                $('.ajax-message').html('<div class="alert alert-danger" id="hide"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>' + result + '</div>');
 
                             });
                         }

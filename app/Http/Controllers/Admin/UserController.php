@@ -143,11 +143,11 @@ class UserController extends Controller
         if ($request->ajax()){
             //$users = User::orderBy('id','ASC')->paginate(5);
             //return ($id);
-            $users = User::orderBy('id','ASC')->paginate(5);
+            //$users = User::orderBy('id','ASC')->paginate(5);
 
-            return response()->json(view('admin.users.users',compact('users'))->render());
+            //return response()->json(view('admin.users.users',compact('users'))->render());
 
-
+            return trans('general.user_deleted');
         }else{
             return redirect()->route('admin.users.index');    
         }

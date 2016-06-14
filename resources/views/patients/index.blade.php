@@ -15,6 +15,9 @@
 
                      @include('flash::message')
 
+                     <div class='ajax-message'>
+                    </div>
+
                      <a href="{{ url('/patients/create') }}" class="btn btn-success">
                             <i class="fa fa-user-plus" aria-hidden="true"></i> @lang('general.create_patient')
                         </a>
@@ -35,7 +38,7 @@
                         </thead>
                         <tbody> 
                             @foreach($patients as $patient)
-                                <tr>
+                                <tr data-id="{{ $patient->id }}">
                                     <td>{{ $patient->id }}</td>
                                     <td>{{ $patient->full_name }}</td>
                                     <td>{{ $patient->dni }}</td>
@@ -47,9 +50,9 @@
                                         <a href="{{ route('patients.edit',$patient->id) }}" class="btn btn-warning">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>
                                         </a>
-                                        <a href="{{ route('patients.destroy',$patient->id) }}" class="btn btn-danger">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </a>
+                                        <a href="" class="btn btn-danger">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -66,5 +69,10 @@
 
     </div>
 </div>
+
+<form class="form-horizontal" id="form-delete" role="form" method="POST" action="{{ url('/patients/:MY_ID') }}">
+    {{ csrf_field() }}
+    <input type="hidden" name="_method" value="DELETE">
+</form>
 
 @endsection

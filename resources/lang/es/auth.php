@@ -25,6 +25,7 @@ return [
     'register_tag' => 'Registrarse',
     'register_name' => 'Nombre',
     'change_password_tag' => 'Cambiar Contraseña',
-    'logout_tag' => 'Salir', 
+    'logout_tag' => 'Salir',
+    'configuration' => 'Configuración', 
 
 ];

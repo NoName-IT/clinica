@@ -41,12 +41,27 @@ Route::get('/', [
 		'uses' => 'HomeController@index'
 	]);
 
-//Route::get('/home', 'HomeController@index');
-
 Route::group(['prefix' => 'admin'], function (){
 
 	Route::resource('users', 'Admin\UserController');
-	
+
+	Route::resource('medic_types', 'Admin\MedicTypeController');
+
+	Route::resource('blood_types', 'Admin\BloodTypeController');
+
+	Route::resource('civil_statuses', 'Admin\CivilStatusController');
+
+	Route::resource('dni_types', 'Admin\DniTypeController');
+
+	Route::resource('relationships', 'Admin\RelationshipController');
 });
 
 Route::resource('patients', 'Patient\PatientController');
+
+Route::resource('coinsurances', 'Coinsurance\CoinsuranceController');
+
+Route::resource('medical_insurances', 'MedicalInsurance\MedicalInsuranceController');
+
+Route::resource('medics', 'Medic\MedicController');
+
+Route::get('city/find', 'Address\CityController@find');

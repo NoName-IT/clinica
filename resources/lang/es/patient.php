@@ -25,5 +25,9 @@ return [
     'dni_copy' => 'Copia DNI',
     'medical_insurance_copy' => 'Copia Obra Social',
     'patient_deleted' => 'Paciente eliminado exitosamente!!!',
+    'dni_type' => 'Tipo DNI',
+    'has_no' => 'No Posee',
+    'medical_insurance' => 'Obra Social',
+    'coinsurance' => 'Coseguro',
     
 ];

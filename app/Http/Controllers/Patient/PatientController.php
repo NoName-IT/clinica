@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Patient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\UpdatePatientRequest;
 use App\Http\Requests;
 use Validator;
 use Laracasts\Flash\Flash;
@@ -15,6 +16,7 @@ use App\BloodType;
 use App\CivilStatus;
 use App\Coinsurance;
 use App\MedicalInsurance;
+use App\City;
 
 
 class PatientController extends Controller
@@ -48,8 +50,9 @@ class PatientController extends Controller
         $coinsurances = Coinsurance::get();
         $medical_insurances = MedicalInsurance::get();
         $dni_types = DniType::get();
+        $cities = City::get();
 
-        return view('patients.create')->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances)->with('medical_insurances', $medical_insurances)->with('dni_types', $dni_types);
+        return view('patients.create')->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances)->with('medical_insurances', $medical_insurances)->with('dni_types', $dni_types)->with('cities', $cities);
     }
 
     /**
@@ -84,6 +87,20 @@ class PatientController extends Controller
     public function edit($id)
     {
         //
+        $patient = Patient::findOrFail($id);
+        $blood_types = BloodType::get();
+        $civil_statuses = CivilStatus::get();
+        $coinsurances = Coinsurance::get();
+        $medical_insurances = MedicalInsurance::get();
+        $dni_types = DniType::get();
+        $cities = City::get();
+
+        $medical_insurance_patient = $patient->medical_insurances->last();
+     
+        $coinsurance_patient = $patient->coinsurances->last();
+     
+        return view('patients.edit')->with('patient', $patient)->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances)->with('medical_insurances', $medical_insurances)->with('dni_types', $dni_types)->with('cities', $cities)->with('medical_insurance_patient', $medical_insurance_patient)->with('coinsurance_patient', $coinsurance_patient);
+
     }
 
     /**
@@ -93,9 +110,10 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePatientRequest $request, $id)
     {
         //
+        dd($request->all());
     }
 
     /**

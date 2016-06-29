@@ -17,4 +17,13 @@ class MedicType extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    protected $fillable = [
+        'name', 
+    ];
+
+    public function medics()
+    {
+        return $this->hasMany('App\Medic');
+    }
 }

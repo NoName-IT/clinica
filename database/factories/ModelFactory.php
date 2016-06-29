@@ -149,17 +149,17 @@ $factory->define(App\Medic::class, function (Faker\Generator $faker) {
         'dni'               => $faker->numberBetween(9500000,45000000),
         'license'           => $faker->numberBetween(111111,9999999),
         'street_address'    => $faker->streetAddress,
-        'blood_type'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
+        'blood_type_id'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
 
     ];
 });
 
-<<<<<<< HEAD
 $factory->define(App\Province::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
     ];
 });
+
 $factory->define(App\Department::class, function (Faker\Generator $faker) {
     return [
         'province_id' => $faker->numberBetween(000,222),
@@ -170,7 +170,9 @@ $factory->define(App\City::class, function (Faker\Generator $faker) {
     return [
         'department_id' => $faker->numberBetween(000,222),
         'name' => $faker->name,
-=======
+    ];
+});
+
 $factory->define(App\CivilStatus::class, function (Faker\Generator $faker) {
     return [
         'name'        => $faker->unique()->randomElement($array = array ('soltero', 'casado')),
@@ -186,6 +188,6 @@ $factory->define(App\BloodType::class, function (Faker\Generator $faker) {
 $factory->define(App\DniType::class, function (Faker\Generator $faker) {
     return [
         'name'        => $faker->unique()->randomElement($array = array ('DNI', 'LE', 'LC', 'LD')),
->>>>>>> dd1fb29515c3edd1a59495d5c234fbabd15bf21b
+
     ];
 });

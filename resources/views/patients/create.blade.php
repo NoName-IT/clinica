@@ -216,7 +216,9 @@
 
                             <div class="col-md-3">
 
-                                <select class="form-control selectpicker" name="medical_insurance">
+                                <select class="form-control selectpicker show-tick" name="medical_insurance" data-live-search="true">
+
+                                    <option value="" selected>@lang('patient.has_no')</option>
 
                                     @foreach($medical_insurances as $medical_insurance)
 
@@ -238,7 +240,9 @@
 
                             <div class="col-md-3">
 
-                                <select class="form-control selectpicker" name="coinsurance">
+                                <select class="form-control selectpicker show-tick" name="coinsurance" data-live-search="true">
+
+                                    <option value="" selected>@lang('patient.has_no')</option>
 
                                     @foreach($coinsurances as $coinsurance)
 
@@ -255,9 +259,22 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('localidad') ? ' has-error' : '' }}">
+                                <label for="localidad" class="col-md-4 control-label">@lang('patient.localidad')</label>
 
+                                <div class="col-md-6">
+                                   
+                                    <input id="localidad" placeholder="Buscar localidad" name="localidad" type="text" value="">
+
+
+                                    @if ($errors->has('localidad'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('localidad') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                         
-
                             
                         
                         <div class="form-group">

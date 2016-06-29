@@ -17,15 +17,16 @@ class CreateMedicsTable extends Migration
             $table->string('first_name',50);
             $table->string('last_name',50);
             $table->integer('medic_type_id')->unsigned();
-            $table->integer('cuit');
-            $table->integer('dni');
-            $table->integer('license');
+            $table->string('cuit');
+            $table->string('dni');
+            $table->string('license');
             $table->string('street_address',150);
-            $table->integer('blood_type');
+            $table->integer('blood_type_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
             $table->foreign('medic_type_id')->references('id')->on('medic_types');
+            $table->foreign('blood_type_id')->references('id')->on('blood_types');
 
         });
 

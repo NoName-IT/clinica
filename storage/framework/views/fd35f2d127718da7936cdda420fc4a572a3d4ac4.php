@@ -8,40 +8,54 @@
 
     <title><?php echo app('translator')->get('general.full_title_tag'); ?></title>
 
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+
+     <link rel="stylesheet" href="<?php echo asset('bower_components/lato/lato.css'); ?>" />
+
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
+    <link href="<?php echo asset('bower_components/font-awesome/css/font-awesome.min.css'); ?>" media="all" rel="stylesheet" type="text/css" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    
+
+    <link href="<?php echo asset('bower_components/bootstrap/css/bootstrap.min.css'); ?>" media="all" rel="stylesheet" type="text/css" />
 
 
+     <link href="<?php echo asset('bower_components/morrisjs/morris.css'); ?>" media="all" rel="stylesheet" type="text/css" />
 
-     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
-     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+     <script type="text/javascript" src="<?php echo asset('bower_components/jquery/dist/jquery.min.js'); ?>"></script>
 
-     <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-     <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+     <script type="text/javascript" src="<?php echo asset('bower_components/raphael/raphael.min.js'); ?>"></script>
+
+     <script type="text/javascript" src="<?php echo asset('bower_components/morrisjs/morris.min.js'); ?>"></script>
 
      <link href="<?php echo asset('css/app.css'); ?>" media="all" rel="stylesheet" type="text/css" />
 
      <script type="text/javascript" src="<?php echo asset('bower_components/moment/min/moment-with-locales.min.js'); ?>"></script>
+
      <script type="text/javascript" src="<?php echo asset('bower_components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'); ?>"></script>
 
     <link rel="stylesheet" href="<?php echo asset('bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'); ?>" />
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+     <link rel="stylesheet" href="<?php echo asset('bower_components/bootstrap-select/dist/css/bootstrap-select.min.css'); ?>" />
+
+    <script type="text/javascript" src="<?php echo asset('bower_components/bootstrap-select/dist/js/bootstrap-select.min.js'); ?>"></script>
+
 
     <script src="<?php echo asset('bower_components/bootstrap-checkbox/js/bootstrap-checkbox.js'); ?>" defer></script>
 
     <link rel="stylesheet" href="<?php echo asset('bower_components/jquery-confirm/dist/jquery-confirm.min.css'); ?>" />
 
     <script src="<?php echo asset('bower_components/jquery-confirm/dist/jquery-confirm.min.js'); ?>" defer></script>
+
+    <script src="<?php echo asset('bower_components/jqueryui/jquery-ui.min.js'); ?>" defer></script>
+    <link rel="stylesheet" href="<?php echo asset('bower_components/jqueryui/jquery-ui.min.css'); ?>" />
+
+    <script src="<?php echo asset('js/app.js'); ?>"></script>
+
+    <script src="<?php echo asset('bower_components/bootstrap/js/bootstrap.min.js'); ?>" defer></script>
+
 
     <style>
         body {
@@ -70,9 +84,26 @@
                 <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
                     <?php echo app('translator')->get('general.title_tag'); ?>
                 </a>
-                 <a class="navbar-brand" href="<?php echo e(url('/patients')); ?>">
-                    <?php echo app('translator')->get('general.patient_module'); ?>
-                </a>
+
+                <?php if(! Auth::guest()): ?>
+                 
+                <div class="btn-group center" role="group">
+                    <a class="btn btn-default" href="<?php echo e(url('/patients')); ?>">
+                        <?php echo app('translator')->get('general.patient_module'); ?>
+                    </a>
+                    <a class="btn btn-default" href="<?php echo e(url('/medical_insurances')); ?>">
+                        <?php echo app('translator')->get('general.medical_insurance_module'); ?>
+                    </a>
+                     <a class="btn btn-default" href="<?php echo e(url('/coinsurances')); ?>">
+                        <?php echo app('translator')->get('general.coinsurance_module'); ?>
+                    </a>
+                    <a class="btn btn-default" href="<?php echo e(url('/medics')); ?>">
+                        <?php echo app('translator')->get('general.medic_module'); ?>
+                    </a>
+                </div>
+
+                <?php endif; ?>
+                
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -118,6 +149,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="<?php echo e(url('/admin/users')); ?>"><i class="fa fa-btn fa-users"></i><?php echo app('translator')->get('general.users'); ?></a></li>
                                 <li><a href="<?php echo e(route('admin.users.edit',Auth::user()->id)); ?>"><i class="fa fa-btn fa-user"></i><?php echo app('translator')->get('auth.change_password_tag'); ?></a></li>
+                                <li><a href="<?php echo e(url('/admin/medic_types')); ?>"><i class="fa fa-btn fa-cog"></i><?php echo app('translator')->get('auth.configuration'); ?></a></li>
                                 <li><a href="<?php echo e(url('/logout')); ?>"><i class="fa fa-btn fa-sign-out"></i><?php echo app('translator')->get('auth.logout_tag'); ?></a></li>
                             </ul>
                         </li>
@@ -130,13 +162,6 @@
     <?php echo $__env->yieldContent('content'); ?>
 
     <!-- JavaScripts -->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="<?php echo asset('js/app.js'); ?>"></script>
-
-    
-
-
 
 </body>
 </html>

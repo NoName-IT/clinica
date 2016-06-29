@@ -22,9 +22,11 @@ class Coinsurance extends Model
      *
      * @var array
      */
+    
     protected $fillable = [
-        'name',
+        'name', 'affiliate_type', 'module', 'available_days', 'renovation_days', 'price_per_day', 'coverage', 'iva', 
     ];
+    
 
     public function patients()
     {

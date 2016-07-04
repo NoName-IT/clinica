@@ -29,5 +29,6 @@ return [
     'has_no' => 'No Posee',
     'medical_insurance' => 'Obra Social',
     'coinsurance' => 'Coseguro',
-    
+    'town' => 'Ciudad de Residencia',
+    'birth_town' => 'Ciudad de Nacimiento',    
 ];

@@ -27,7 +27,7 @@ class Patient extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'birth_date', 'status',
+        'first_name', 'last_name', 'birth_date', 'status', 'birth_town', 'birth_time', 'dni_type_id', 'dni', 'street_address', 'town', 'phone', 'blood_type_id', 'dni_copy', 'medical_insurance_copy',
     ];
 
     /**
@@ -58,7 +58,7 @@ class Patient extends Model
 
     public function coinsurances()
     {
-        return $this->belongsToMany('App\Coinsurance');
+        return $this->belongsToMany('App\Coinsurance')->withPivot('initial_date', 'final_date')->withTimestamps();
     }
 
     public function paychecks()

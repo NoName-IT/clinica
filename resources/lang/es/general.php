@@ -84,5 +84,10 @@ return [
     'edit_dni_type' => 'Editar Tipo DNI',
     'dni_type_edited' => 'Tipo DNI editado exitosamente!!!',
     'relationship_edited' => 'Relación editada exitosamente!!!',
+    'find_town' => 'Buscar Ciudad ...',
+    'patient_edited' => 'Paciente editado exitosamente!!!',
+    'patient_created' => 'Paciente creado exitosamente!!!',
+     
+
          
 ];

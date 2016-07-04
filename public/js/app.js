@@ -60,14 +60,30 @@
 
             $(function()
             {
-                 $( "#localidad" ).autocomplete({
+                 $( "#birth_town_text" ).autocomplete({
                   source: "http://clinica.laravel/city/find",
                   minLength: 3,
                   select: function(event, ui) {
                     //Setea el valor  con el nombre de la localidad
-                    $('#localidad').val(ui.item.value);
+                    //$('#birth_town_id').val(ui.item.value);
                     //Setea value="" con el ID correspondiente de la localidad para utilizarlo en el POST.
-                    $('#localidad').attr('value',ui.item.id);
+                    $('#birth_town').attr('value',ui.item.id);
+                  }
+                });
+            });
+
+            $(function()
+            {
+                 $( "#town_text" ).autocomplete({
+                  source: "http://clinica.laravel/city/find",
+                  minLength: 3,
+                  select: function(event, ui) {
+                    //Setea el valor  con el nombre de la localidad
+                    //$('#birth_town_id').val(ui.item.value);
+                    //Setea value="" con el ID correspondiente de la localidad para utilizarlo en el POST.
+                    $('#town').attr('value',ui.item.id);
+                    $('#birth_town_text').val(ui.item.value);
+                    $('#birth_town').attr('value',ui.item.id);
                   }
                 });
             });

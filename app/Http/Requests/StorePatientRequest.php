@@ -24,26 +24,23 @@ class StorePatientRequest extends Request
     public function rules()
     {
         return [
-            /*
+            
             'first_name' => 'required|max:20',
             'last_name' => 'required|max:20',
+            'town' => 'required|exists:cities,id',
+            'birth_town' => 'required|exists:cities,id',
             'birth_date' => 'required|date',
             'birth_time' => array('required', 'regex:/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/'),
             'civil_status' => 'required|exists:civil_statuses,id',
             'blood_type' => 'required|exists:blood_types,id',
-            'dni' => 'required|integer',
+            'dni' => 'required|integer|unique:patients,dni',
             'street_address' => 'required|string',
             'phone' => 'required|integer',
             'dni_copy' => 'boolean',
-            'coinsurance' => 'required|exists:coinsurances,id',
-            'medical_insurance' => 'required|exists:medical_insurances,id',
+            'medical_insurance_copy' => 'boolean',   
+            'coinsurance' => 'exists:coinsurances,id',
+            'medical_insurance' => 'exists:medical_insurances,id',
             'dni_type' => 'required|exists:dni_types,id',
-
-
-
-            */
-            
-
         ];
     }
 }

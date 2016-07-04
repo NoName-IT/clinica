@@ -28,6 +28,8 @@ class UpdatePatientRequest extends Request
 
             'first_name' => 'required|max:20',
             'last_name' => 'required|max:20',
+            'town' => 'required|exists:cities,id',
+            'birth_town' => 'required|exists:cities,id',
             'birth_date' => 'required|date',
             'birth_time' => array('required', 'regex:/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/'),
             'civil_status' => 'required|exists:civil_statuses,id',
@@ -35,7 +37,8 @@ class UpdatePatientRequest extends Request
             'dni' => 'required|integer',
             'street_address' => 'required|string',
             'phone' => 'required|string',
-            'dni_copy' => 'boolean',
+            'dni_copy' => 'integer',
+            'medical_insurance_copy' => 'integer',
             'coinsurance' => 'exists:coinsurances,id',
             'medical_insurance' => 'exists:medical_insurances,id',
             'dni_type' => 'required|exists:dni_types,id',

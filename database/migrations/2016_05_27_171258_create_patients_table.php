@@ -26,8 +26,8 @@ class CreatePatientsTable extends Migration
             $table->integer('town');
             $table->string('phone',50);
             $table->integer('blood_type_id')->unsigned();;
-            $table->boolean('dni_copy');
-            $table->boolean('medical_insurance_copy');
+            $table->boolean('dni_copy')->default(false);
+            $table->boolean('medical_insurance_copy')->default(false);
             $table->boolean('status');
             $table->timestamps();
             $table->softDeletes();

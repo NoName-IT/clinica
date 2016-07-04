@@ -16,16 +16,13 @@ class CityController extends Controller
         $this->middleware('auth');
     }
     //
-    public function getCities($id) 
+    public static function getCity($id)
         {
-            $cities = City::where('department_id', '=', $id)->get();
-            $options = array();
-
-            foreach ($cities as $city) {
-                $options += array($city->id => $city->name);
-            }
-
-            return Response::json($options);
+            $cities = City::findOrFail($id);
+            $options = array( 'id' => $cities->id , 'value' => $cities->name .', '. $cities->department->name .', '. $cities->department->province->name);
+            //dd($options);
+           
+            return $options;
         }
 
 

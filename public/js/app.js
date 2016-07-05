@@ -88,4 +88,82 @@
                 });
             });
 
+   $(function()
+    {
+         $( "#town" ).autocomplete({
+          source: "http://clinica.laravel/find/Town/name/Completo",
+          minLength: 3,
+          select: function(event, ui) {
+            //Setea el valor  con el nombre de la localidad
+            $('#town').val(ui.item.value);
+            //Setea value="" con el ID correspondiente de la localidad para utilizarlo en el POST.
+            $('#town').attr('value',ui.item.id);
+          }
+        });
+    });
+
+    $(function()
+        {
+             $( "#dni" ).autocomplete({
+              //source: "http://clinica.laravel/find/" + $('#dni_clase_find').val() + '/' +$('#dni_campo_find').val() + '/' +$('#dni_completo').val(),
+              source: "http://clinica.laravel/find/Patient/dni/Completo",
+              minLength: 3,
+              select: function(event, ui) {
+                //Setea el valor  con el nombre de la localidad
+                //$('#dni').val(ui.item.value);
+                //Setea value="" con el ID correspondiente de la localidad para utilizarlo en el POST.
+                //$('#dni').attr('value',ui.item.id);
+                $('#first_name').attr('value',ui.item.first_name);
+                $('#last_name').attr('value',ui.item.last_name);
+                $('#birth_date').attr('value',ui.item.birth_date);
+                $('#birth_town').attr('value',ui.item.birth_town);
+                $('#birth_town_text').attr('value',ui.item.birth_town_text);
+                $('#birth_time').attr('value',ui.item.birth_time);                
+                $('select[name=civil_status]').val(ui.item.civil_status_id);
+                $('.selectpicker').selectpicker('refresh');
+                //Cambia el SelectPicker a Selected segun el ID que recibió.
+                $('select[name=dni_type]').val(ui.item.dni_type_id);
+                $('.selectpicker').selectpicker('refresh');
+                $('#street_address').attr('value',ui.item.street_address);
+                $('#town').attr('value',ui.item.town);
+                $('#phone').attr('value',ui.item.phone);
+                $('select[name=blood_type]').val(ui.item.blood_type_id);
+                $('.selectpicker').selectpicker('refresh');     
+                $('#dni').attr('value',ui.item.dni);
+                $('#town_text').attr('value',ui.item.town_text);
+
+                $('select[name=dni_copy]').val(ui.item.dni_copy);
+                //$('.selectpicker').selectpicker('refresh');
+
+                if (ui.item.dni_copy == 1) {
+                    $('#dni_copy').prop('checked', true);
+
+                } else {
+                    $('#dni_copy').prop('checked', false);
+
+                }
+
+
+                if (ui.item.medical_insurance_copy == 1) {
+                    $('#medical_insurance_copy').prop('checked', true);
+
+                } else {
+                    $('#medical_insurance_copy').prop('checked', false);
+
+                }
+
+                $('select[name=medical_insurance]').val(ui.item.medical_insurance);
+                $('.selectpicker').selectpicker('refresh');
+                $('select[name=coinsurance]').val(ui.item.coinsurance);
+                $('.selectpicker').selectpicker('refresh');
+
+              }
+            });
+
+        });
+
+
+
+
+
         });

@@ -61,6 +61,28 @@ class Patient extends Model
         return $this->belongsToMany('App\Coinsurance')->withPivot('initial_date', 'final_date')->withTimestamps();
     }
 
+    public function get_last_medical_insurance()
+    {
+        $medical_insurance = $this->medical_insurances()->where('final_date','0000-00-00 00:00:00')->first();
+        if ( $medical_insurance ){
+            $id = $medical_insurance->pivot->medical_insurance_id;
+        } else {
+            $id = 0;
+        }
+        return $id;
+    }
+    
+    public function get_last_medical_coinsurance()
+    {
+        $medical_coinsurance = $this->coinsurances()->where('final_date','0000-00-00 00:00:00')->first();
+        //dd($medical_coinsurance);
+        if ( $medical_coinsurance ){
+            $id = $medical_coinsurance->pivot->coinsurance_id;
+        } else {
+            $id = 0;
+        }
+        return $id;  
+    }
     public function paychecks()
     {
         return $this->hasMany('App\Paycheck');

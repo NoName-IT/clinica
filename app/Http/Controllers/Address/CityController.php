@@ -16,14 +16,19 @@ class CityController extends Controller
         $this->middleware('auth');
     }
     //
-    public static function getCity($id)
+    public static function getCity($id) 
         {
             $cities = City::findOrFail($id);
             $options = array( 'id' => $cities->id , 'value' => $cities->name .', '. $cities->department->name .', '. $cities->department->province->name);
             //dd($options);
-           
+            
             return $options;
         }
+
+    public function getCityString($id){
+            $cities = City::findOrFail($id);
+            return $cities->name .', '. $cities->department->name .', '. $cities->department->province->name;
+    }
 
 
     public function find()
@@ -44,4 +49,16 @@ class CityController extends Controller
             }
             return Response::json($options);
         }
+
+  /*  public function getCityString($id) 
+        {
+            $cities = City::findOrFail($id);
+            $options = $cities->name .', '. $cities->department->name .', '. $cities->department->province->name);
+            //dd($options);
+            
+            return $options;
+        }
+    */
+
+
 }

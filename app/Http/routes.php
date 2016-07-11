@@ -56,6 +56,8 @@ Route::group(['prefix' => 'admin'], function (){
 	Route::resource('relationships', 'Admin\RelationshipController');
 });
 
+Route::resource('internments', 'Internment\InternmentController');
+
 Route::resource('patients', 'Patient\PatientController');
 
 Route::resource('coinsurances', 'Coinsurance\CoinsuranceController');

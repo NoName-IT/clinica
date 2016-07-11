@@ -88,6 +88,9 @@
                 @if (! Auth::guest())
                  
                 <div class="btn-group center" role="group">
+                    <a class="btn btn-default" href="{{ url('/internmets') }}">
+                        @lang('general.internment_module')
+                    </a>
                     <a class="btn btn-default" href="{{ url('/patients') }}">
                         @lang('general.patient_module')
                     </a>

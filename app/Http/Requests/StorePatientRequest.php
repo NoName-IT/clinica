@@ -33,7 +33,7 @@ class StorePatientRequest extends Request
             'birth_time' => array('required', 'regex:/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/'),
             'civil_status' => 'required|exists:civil_statuses,id',
             'blood_type' => 'required|exists:blood_types,id',
-            'dni' => 'required|integer|unique:patients,dni',
+            'dni' => 'required|integer|unique:patients,dni,NULL,id,deleted_at,NULL',
             'street_address' => 'required|string',
             'phone' => 'required|integer',
             'dni_copy' => 'boolean',

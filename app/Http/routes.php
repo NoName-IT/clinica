@@ -66,6 +66,6 @@ Route::resource('medical_insurances', 'MedicalInsurance\MedicalInsuranceControll
 
 Route::resource('medics', 'Medic\MedicController');
 
+Route::get('find/{clase}/{campo}/{completo}', 'FindController@find');
 Route::get('city/find', 'Address\CityController@find');
-
 Route::get('city/getCity/{id}', 'Address\CityController@getCity');

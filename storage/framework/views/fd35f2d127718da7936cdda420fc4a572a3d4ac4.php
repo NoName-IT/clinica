@@ -88,7 +88,7 @@
                 <?php if(! Auth::guest()): ?>
                  
                 <div class="btn-group center" role="group">
-                    <a class="btn btn-default" href="<?php echo e(url('/internmets')); ?>">
+                    <a class="btn btn-default" href="<?php echo e(url('/internments')); ?>">
                         <?php echo app('translator')->get('general.internment_module'); ?>
                     </a>
                     <a class="btn btn-default" href="<?php echo e(url('/patients')); ?>">

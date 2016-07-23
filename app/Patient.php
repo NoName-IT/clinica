@@ -53,12 +53,12 @@ class Patient extends Model
 
     public function medical_insurances()
     {
-        return $this->belongsToMany('App\MedicalInsurance')->withPivot('initial_date', 'final_date')->withTimestamps();
+        return $this->belongsToMany('App\MedicalInsurance')->withPivot('initial_date', 'final_date', 'affiliate_number')->withTimestamps();
     }
 
     public function coinsurances()
     {
-        return $this->belongsToMany('App\Coinsurance')->withPivot('initial_date', 'final_date')->withTimestamps();
+        return $this->belongsToMany('App\Coinsurance')->withPivot('initial_date', 'final_date', 'affiliate_number')->withTimestamps();
     }
 
     public function get_last_medical_insurance()
@@ -72,6 +72,17 @@ class Patient extends Model
         return $id;
     }
     
+    public function getLastMedicalInsuranceNameAttribute()
+    {
+        $medical_insurance = $this->medical_insurances()->where('final_date','0000-00-00 00:00:00')->first();
+        if ( $medical_insurance ){
+            $name = $medical_insurance->name;
+        } else {
+            $name = 'No tiene';
+        }
+        return $name;
+    }    
+
     public function get_last_medical_coinsurance()
     {
         $medical_coinsurance = $this->coinsurances()->where('final_date','0000-00-00 00:00:00')->first();

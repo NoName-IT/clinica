@@ -162,6 +162,10 @@
 
         });
 
+        $('#complete').on("click",function() {
+            $('#testigo_1').attr('value','1');
+            $('#testigo_2').attr('value','1');
+        }); 
 
 
 

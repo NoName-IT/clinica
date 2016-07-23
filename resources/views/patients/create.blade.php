@@ -342,6 +342,26 @@
                                 @endif
                             </div>
                         </div>
+                       <div class="col-md-6 form-group{{ $errors->has('mi_affiliate_number') ? ' has-error' : '' }}">
+                                <label for="mi_affiliate_number" class="col-md-4 control-label">@lang('patient.mi_affiliate_number')</label>
+
+                                <div class="col-md-6">
+                                    <input id="mi_affiliate_number" type="text" class="form-control" name="mi_affiliate_number" value="{{ old('mi_affiliate_number') }}">
+
+                                    @if ($errors->has('mi_affiliate_number'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('mi_affiliate_number') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="row">
+
 
                         <div class="col-md-6 form-group{{ $errors->has('coinsurance') ? ' has-error' : '' }}">
                             <label for="coinsurance" class="col-md-2 control-label">@lang('patient.coinsurance')</label>
@@ -377,6 +397,20 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="col-md-6 form-group{{ $errors->has('c_affiliate_number') ? ' has-error' : '' }}">
+                                <label for="c_affiliate_number" class="col-md-4 control-label">@lang('patient.c_affiliate_number')</label>
+
+                                <div class="col-md-6">
+                                    <input id="c_affiliate_number" type="text" class="form-control" name="c_affiliate_number" value="{{ old('c_affiliate_number') }}">
+
+                                    @if ($errors->has('c_affiliate_number'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('c_affiliate_number') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>                        
                     </div>
 
                     <br>
@@ -387,6 +421,8 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> @lang('general.create_patient')
                                 </button>
+                                <a  class="btn btn-warning" href="{{ URL::previous() }}"> <i class="fa fa-btn fa-undo" ></i> @lang('general.cancel_button')</a>
+
                             </div>
                         </div>
 

@@ -32,6 +32,8 @@ class CreateCoinsurancesTable extends Migration
             $table->integer('patient_id')->unsigned();
             $table->integer('coinsurance_id')->unsigned();
 
+            $table->string('affiliate_number',50);             
+
             $table->dateTime('initial_date');
             $table->dateTime('final_date');
             

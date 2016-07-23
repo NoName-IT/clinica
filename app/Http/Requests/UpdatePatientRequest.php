@@ -42,7 +42,8 @@ class UpdatePatientRequest extends Request
             'coinsurance' => 'exists:coinsurances,id',
             'medical_insurance' => 'exists:medical_insurances,id',
             'dni_type' => 'required|exists:dni_types,id',
-            
+            'mi_affiliate_number' => 'integer|required_with:medical_insurance',
+            'c_affiliate_number' => 'integer|required_with:coinsurance',            
         ];
     }
 }

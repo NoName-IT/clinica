@@ -24,7 +24,7 @@ class StorePatientRequest extends Request
     public function rules()
     {
         return [
-            
+           /* 
             'first_name' => 'required|max:20',
             'last_name' => 'required|max:20',
             'town' => 'required|exists:cities,id',
@@ -41,6 +41,10 @@ class StorePatientRequest extends Request
             'coinsurance' => 'exists:coinsurances,id',
             'medical_insurance' => 'exists:medical_insurances,id',
             'dni_type' => 'required|exists:dni_types,id',
+            'mi_affiliate_number' => 'integer|required_with:medical_insurance',
+            'c_affiliate_number' => 'integer|required_with:coinsurance',        
+
+        */
         ];
     }
 }

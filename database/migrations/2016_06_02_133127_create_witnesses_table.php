@@ -16,7 +16,7 @@ class CreateWitnessesTable extends Migration
             $table->increments('id');
             $table->integer('internment_id')->unsigned();
             $table->integer('relationship_id')->unsigned();
-
+            
             $table->string('first_name',50);
             $table->string('last_name',50);
             $table->integer('dni_type');

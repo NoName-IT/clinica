@@ -14,4 +14,7 @@
     <a class="btn btn-default" href="{{ url('/admin/relationships') }}">
         @lang('general.relationships_module')
     </a>
+    <a class="btn btn-default" href="{{ url('/admin/discharge_types') }}">
+        @lang('general.discharge_types_module')
+    </a>
 </div>

@@ -89,7 +89,12 @@ return [
     'find_town' => 'Buscar Ciudad ...',
     'patient_edited' => 'Paciente editado exitosamente!!!',
     'patient_created' => 'Paciente creado exitosamente!!!',
-     
+    'cancel_button' => 'Cancelar',
+    'discharge_types_module' => 'Tipo Alta',
+    'discharge_type_created' => 'Tipo Altacreado exitosamente!!!',
+    'edit_discharge_type' => 'Editar Tipo Alta',
+    'discharge_type_edited' => 'Tipo Alta editado exitosamente!!!',
+    'discharge_types' => 'Tipo Alta',
+    'create_discharge_type' => 'Crear Tipo Alta',
 
-         
 ];

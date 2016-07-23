@@ -18,4 +18,16 @@ class Witness extends Model
      */
     protected $dates = ['deleted_at'];
     
+
+    public function internment()
+    {
+        return $this->belongsTo('App\Internment');
+    }
+
+
+    public function relationship()
+    {
+        return $this->belongsTo('App\Relationship');
+    }
+
 }

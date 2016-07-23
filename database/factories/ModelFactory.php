@@ -72,6 +72,7 @@ $factory->define(App\MedicalInsurancePatient::class, function (Faker\Generator $
 
     return [
         'initial_date' => $faker->dateTimeThisYear,
+        'affiliate_number' => $faker->unique()->numberBetween(12222858,42222858),         
     ];
 });
 
@@ -79,6 +80,7 @@ $factory->define(App\CoinsurancePatient::class, function (Faker\Generator $faker
 
     return [
         'initial_date' => $faker->dateTimeThisYear,
+        'affiliate_number' => $faker->unique()->numberBetween(52222858,92222858), 
     ];
 });
 
@@ -188,6 +190,13 @@ $factory->define(App\BloodType::class, function (Faker\Generator $faker) {
 $factory->define(App\DniType::class, function (Faker\Generator $faker) {
     return [
         'name'        => $faker->unique()->randomElement($array = array ('DNI', 'LE', 'LC', 'LD')),
+
+    ];
+});
+
+$factory->define(App\DischargeType::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->unique()->randomElement($array = array ('Alta Médica', 'Contra Opinión', 'Derivado', 'Óbito', 'Fuga')),
 
     ];
 });

@@ -34,4 +34,8 @@ class Medic extends Model
     {
         return $this->belongsTo('App\BloodType');
     }
+    public function getFullNameAttribute() 
+    {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
 }

@@ -31,4 +31,6 @@ return [
     'coinsurance' => 'Coseguro',
     'town' => 'Ciudad de Residencia',
     'birth_town' => 'Ciudad de Nacimiento',    
+    'mi_affiliate_number' => 'Nro Afiliado',
+    'c_affiliate_number' => 'Nro Afiliado',
 ];

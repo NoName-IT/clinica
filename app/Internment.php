@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\Medic;
+use App\InternmentMedic;
 
 class Internment extends Model
 {
@@ -25,10 +26,37 @@ class Internment extends Model
     {
         return $this->belongsTo('App\Patient');
     }
-
+/*
     public function medics()
     {
         return $this->belongsToMany('App\Medic')->withTimestamps();
     }
+*/
+    public function medics()
+    {
+        return $this->belongsToMany('App\Medic')->withPivot('initial_date', 'final_date')->withTimestamps();
+    }
+    
+    public function witnesses()
+    {
+        return $this->hasMany('App\Witness');
+    }
+    public function discharge_type()
+    {
+        return $this->belongsTo('App\DischargeType');
+    }
+
+    public function getMedicFullNameAttribute(){
+        $internment_medic = InternmentMedic::getLastInternmentMedic($this->id);
+        dd($internment_medic);
+        $medic =  Medic::findOrFail(200)->first();
+        return ucfirst('s');
+   
+        //return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+    public function getPsychologistFullNameAttribute(){
+        
+    }
+
 
 }

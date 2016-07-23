@@ -21,4 +21,9 @@ class Relationship extends Model
     protected $fillable = [
         'name', 
     ];
+    
+    public function witnesses()
+    {
+        return $this->hasMany('App\Witness');
+    }
 }

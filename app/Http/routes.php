@@ -17,9 +17,9 @@ Route::get('/', function () {
 });
 
 */
-
 // este es para hacer todas las rutas de auth controller
 //Route::auth();
+
 
 // Authentication Routes...
 Route::get('login', 'Auth\AuthController@showLoginForm');
@@ -54,17 +54,28 @@ Route::group(['prefix' => 'admin'], function (){
 	Route::resource('dni_types', 'Admin\DniTypeController');
 
 	Route::resource('relationships', 'Admin\RelationshipController');
+
+	Route::resource('discharge_types', 'Admin\DischargeTypeController');
+
 });
 
 Route::resource('internments', 'Internment\InternmentController');
 
 Route::resource('patients', 'Patient\PatientController');
+Route::post( 'internments/confirm',	 ['as' => 'internmentConfirm',
+			 'uses' => 'Internment\InternmentController@confirm']);
+
+Route::post( 'internments/witness',	 ['as' => 'witnessCreate',
+			 'uses' => 'Internment\InternmentController@witness']);
+Route::resource('witnesses', 'Witness\WitnessController');
 
 Route::resource('coinsurances', 'Coinsurance\CoinsuranceController');
 
 Route::resource('medical_insurances', 'MedicalInsurance\MedicalInsuranceController');
 
 Route::resource('medics', 'Medic\MedicController');
+
+Route::get('pdf', 'PdfController@invoice');
 
 Route::get('find/{clase}/{campo}/{completo}', 'FindController@find');
 Route::get('city/find', 'Address\CityController@find');

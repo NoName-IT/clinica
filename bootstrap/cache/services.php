@@ -26,7 +26,8 @@
     22 => 'App\\Providers\\AuthServiceProvider',
     23 => 'App\\Providers\\EventServiceProvider',
     24 => 'App\\Providers\\RouteServiceProvider',
-    25 => 'Laracasts\\Flash\\FlashServiceProvider',
+    25 => 'Barryvdh\\DomPDF\\ServiceProvider',
+    26 => 'Laracasts\\Flash\\FlashServiceProvider',
   ),
   'eager' => 
   array (
@@ -43,7 +44,8 @@
     10 => 'App\\Providers\\AuthServiceProvider',
     11 => 'App\\Providers\\EventServiceProvider',
     12 => 'App\\Providers\\RouteServiceProvider',
-    13 => 'Laracasts\\Flash\\FlashServiceProvider',
+    13 => 'Barryvdh\\DomPDF\\ServiceProvider',
+    14 => 'Laracasts\\Flash\\FlashServiceProvider',
   ),
   'deferred' => 
   array (

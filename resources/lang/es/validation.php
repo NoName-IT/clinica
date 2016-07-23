@@ -110,6 +110,13 @@ return [
         'email' => 'correo electrónico',
         'password' => 'contraseña',
         'dni_copy' => 'Copia DNI',
+        'first_name' => 'Nombre',
+        'last_name' => 'Apellido',    
+        'birth_town' => 'Ciudad',
+        'birth_date' => 'dia de nacimiento',
+        'birth_time' => 'hora de nacimiento',
+        'street_address' => 'dirección',
+        'phone' => 'teléfono',
     ],
 
 ];

@@ -12,97 +12,66 @@
                     </ol>
                 </div>
                 <div class="panel-body">
-
+                    @include('flash::message')
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('internments/confirm') }}">
 
                         {{ csrf_field() }}
 
-                        <input id="internment_id" type="text"  name="internment_id" value="{{ $internment_id }}" hidden="">
+                        <input id="internment_id" type="text"  name="internment_id" value="{{ $internment->id }}" hidden="">
                         
                         <div class="row">
-                            <div class="row">
-                                <div class="col-md-6 form-group{{ $errors->has('diagnostic') ? ' has-error' : '' }}">
-                                    <label for="diagnostic" class="col-md-4 control-label">@lang('internment.diagnostic')</label>
-
-                                    <div class="col-md-8">
-                                        <input id="diagnostic" type="text" class="form-control" name="diagnostic" value="{{ old('$internment->diagnostic') }}">
-
-                                        @if ($errors->has('diagnostic'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('$internment->diagnostic') }}</strong>
-                                            </span>
-                                        @endif
+                                    <div class="col-md-4 form-group{{ $errors->has('order') ? ' has-error' : '' }}">
+                                            <label for="order" class="col-md-6 control-label">@lang('internment.order_number')</label>
+                                            <div class="col-md-8">
+                                                <input id="order" type="text" class="form-control" readonly name="order" value="{{ $internment->order }}">
+                                                @if ($errors->has('order'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('order') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-6 form-group{{ $errors->has('room') ? ' has-error' : '' }}">
-                                    <label for="rootm" class="col-md-2 control-label">@lang('internment.room')</label>
-
-                                    <div class="col-md-8">
-                                        <input id="room" type="text" class="form-control" name="room" value="{{ old('room') }}">
-
-                                        @if ($errors->has('room'))
-                                            <span class="help-block">
-                                                <strong>{{ $errors->first('room') }}</strong>
-                                            </span>
-                                        @endif
+                                    <div class="col-md-4 form-group{{ $errors->has('order') ? ' has-error' : '' }}">
+                                            <label for="order" class="col-md-6 control-label">@lang('internment.clinic_history')</label>
+                                            <div class="col-md-8">
+                                                <input id="order" type="text" class="form-control" readonly name="order" value="{{ $internment->patient->clinic_history }}">
+                                                @if ($errors->has('order'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('order') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
                                     </div>
-                                </div>
-                            </div>
-                            <br>
-                        <br>
-
+                        </div>
                         <div class="row">
+                                    <div class="col-md-4 form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                            <label for="name" class="col-md-6 control-label">@lang('internment.patient_full_name')</label>
+                                            <div class="col-md-8">
+                                                <input id="name" type="text" class="form-control" readonly name="name" value="{{ $internment->patient->full_name }}">
+                                                @if ($errors->has('order'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                    </div>
 
-                            <div class="col-md-6 form-group{{ $errors->has('clinic_history') ? ' has-error' : '' }}">
-                                <label for="clinic_history" class="col-md-4 control-label">@lang('internment.clinic_history')</label>
-                                <div class="col-md-6">
-
-                                    <input id="clinic_history" type="text" class="form-control" name="clinic_history" value="{{ old('clinic_history') }}">
-
-                                    @if ($errors->has('clinic_history'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('clinic_history') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col-md-6 form-group{{ $errors->has('medic') ? ' has-error' : '' }}">
-                                <label for="medic" class="col-md-6 control-label">@lang('internment.medic')</label>
-
-                                <div class="col-md-6">
-
-                                    <select class="form-control selectpicker show-tick" name="medic">
-
-                                        @foreach($medics as $medic)
-
-                                            <option value="{{ $medic->id }}"
-
-                                            @if (old('medic') == $medic->id)
-                                                    selected
-                                            @endif
-
-                                            >{{ $medic->full_name }}</option>
-                                        
-                                        @endforeach
-                                    </select> 
-
-                                    @if ($errors->has('medic'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('medic') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                        	</div>
-
-                        <br>
-
-                    </div>
-
+                                    <div class="col-md-4 form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
+                                            <label for="dni" class="col-md-6 control-label">@lang('general.dni')</label>
+                                            <div class="col-md-8">
+                                                <input id="dni" type="text" class="form-control" readonly name="dni" value="{{ $internment->patient->dni }}">
+                                                @if ($errors->has('dni'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('dni') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+                                    </div>
+                        </div>                        
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a  class="btn btn-warning" href="{{ URL::previous() }}"> <i class="fa fa-btn fa-undo" ></i> @lang('internment.goback')</a>
-                          
+                                <a  class="btn btn-warning" href="{{ URL::previous() }}"> <i class="fa fa-btn fa-undo" ></i> @lang('internment.goback')</a>                         
                                 <button type="submit" id="complete" onclick="complete()" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> @lang('internment.complete')
                                 </button> 

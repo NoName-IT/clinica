@@ -33,6 +33,8 @@ class UpdateMedicRequest extends Request
             'street_address' => 'required|string',
             'license' => 'required|integer|unique:medics,license,'.$this->medics.',id,deleted_at,NULL',
             'cuit' => 'required|integer|unique:medics,cuit,'.$this->medics.',id,deleted_at,NULL',
+            'phone' => 'required|string|max:30',
+            'email' => 'required|email|max:100',
         ];
     }
 }

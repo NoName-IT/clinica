@@ -24,12 +24,11 @@
                     
                     <table class="table table-striped">
                         <thead>
-                            <th>@lang('general.id')</th>
                             <th>@lang('general.full_name')</th>
                             <th>@lang('general.dni')</th>
                             <th>@lang('general.birth_date')</th>
                             <th>@lang('general.age')</th>
-                            <th>@lang('general.civil_status')</th>
+                            <th>@lang('general.clinic_history')</th>
                             <th>
                                 
                             </th>
@@ -39,12 +38,12 @@
                         <tbody> 
                             @foreach($patients as $patient)
                                 <tr data-id="{{ $patient->id }}">
-                                    <td>{{ $patient->id }}</td>
                                     <td>{{ $patient->full_name }}</td>
                                     <td>{{ $patient->dni }}</td>
                                     <td>{{ $patient->birth_date }}</td>
                                     <td>{{ $patient->age }}</td>
-                                    <td>{{ $patient->civil_status->name }}</td>
+                                    <td>{{ $patient->clinic_history}}</td>
+
 
                                     <td>
                                         <a href="{{ route('patients.edit',$patient->id) }}" class="btn btn-warning">

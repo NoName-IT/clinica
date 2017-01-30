@@ -53,6 +53,7 @@ class WitnessController extends Controller
      */
     public static function store($request)
     {
+        //dd($request);
         $witness = new Witness;
         $witness->relationship_id = $request->relationship;
         $witness->first_name = $request->first_name;

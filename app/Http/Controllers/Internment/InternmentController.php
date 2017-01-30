@@ -18,12 +18,13 @@ use App\City;
 use App\Relationship;
 use Carbon\Carbon;
 use App\Http\Controllers\Address\CityController;
-use App\Http\Requests\StorePatientRequest;
+use App\Http\Requests\StoreInternmentPatientRequest;
 use App\Http\Requests\StoreWitnessRequest;
 use App\Http\Requests\StoreInternmentConfirmRequest;
 use App\Http\Controllers\Witness\WitnessController;
 use App\Medic;
 use App\InternmentMedic;
+use App\DischargeType;
 
 class InternmentController extends Controller
 {
@@ -41,13 +42,13 @@ class InternmentController extends Controller
     {
         //
         //
-        //$internments = Internment::orderBy('id','ASC')->paginate(10);
-        //return view('internments.index')->with('internments', $internments);
+        $internments = Internment::orderBy('id','DESC')->paginate(10);
+        return view('internments.index')->with('internments', $internments);
 
-        $internment = Internment::findOrFail('200');   
+        //$internment = Internment::findOrFail('200');   
 
         //return view('pdf.clinichistory')->with('internment', $internment);
-        return view('pdf.internmentfeelingly')->with('internment', $internment);
+        //return view('pdf.internmentfeelingly')->with('internment', $internment);
     }
 
     /**
@@ -64,8 +65,9 @@ class InternmentController extends Controller
         $medical_insurances = MedicalInsurance::get();
         $dni_types = DniType::get();
         $cities = City::get();
-
+        //$next_history_clinic = Patient::getNextHistoryClinic();     
         return view('internments.create')->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances)->with('medical_insurances', $medical_insurances)->with('dni_types', $dni_types)->with('cities', $cities);
+            //->with('next_history_clinic', $next_history_clinic);
     }
 
     /**
@@ -74,18 +76,19 @@ class InternmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePatientRequest $request)
+    public function store(StoreInternmentPatientRequest $request)
     {
-        $patient = PatientController::storePatientInternment($request);
-    
+        $patient = PatientController::storeInternmentPatientInternment($request);
+        $next_order = Internment::getNextOrder();     
         $internment = new Internment;    
+        $internment->order = $next_order;        
         $internment->patient()->associate($patient);
         $internment->save();
 
         $dni_types = DniType::get();
         $cities = City::get();
         $relationships =  Relationship::get();
-
+        //dd($internment);
         return view('internments.createWitness')->with('isMinor', $patient->age <= '18')->with('dni_types', $dni_types)->with('cities', $cities)->with('relationships', $relationships)->with('internment_id',$internment->id)->with('testigo_1', false)->with('testigo_2', false);
 
     }
@@ -100,8 +103,6 @@ class InternmentController extends Controller
         //dd($request);
         //Save Witness y me devuelve el Objeto Witness
         $witness = WitnessController::store($request);
-        //Mantengo el Id del Patient.
-
         $dni_types = DniType::get();
         $cities = City::get();
         $relationships =  Relationship::get();
@@ -124,8 +125,9 @@ class InternmentController extends Controller
                 
                 } else {
                     //Es testigo 2 ó 1 pero , por lo tanto pasa a la siguiente vista. Cargar Diagnostico, Médico, Habitación.
-                    $medics = Medic::get();
-                    return view('internments.complete')->with('medics', $medics)->with('internment_id', $request->internment_id);
+                    $internment = Internment::findOrFail($request->internment_id);
+
+                    return view('internments.complete')->with('internment', $internment);
                 }
             }
         }
@@ -133,21 +135,11 @@ class InternmentController extends Controller
     }
 
     public function confirm(StoreInternmentConfirmRequest $request){
-        //dd($request);
         $internment = Internment::findOrFail($request->internment_id);
-        //dd($internment);
-        $internment->diagnostic = $request->diagnostic;
-        $internment->room = $request->room;
-        $internment->clinic_history = $request->clinic_history;
-        $internment->medics()->attach($request->medic);
-        //dd($internment);
-       
         $internment->initial_date = Carbon::now();
         $internment->save();
-        Flash::success(trans('general.patient_created'));
-
-        return view('internments.exportpdf')->with('internment', $internment);
-
+        Flash::success(trans('Internación Completada con éxito!'));
+        return redirect()->route('internments.index');        
     }
 
     public static function getInternment($id){
@@ -169,13 +161,24 @@ class InternmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Trae la internacion con la relación Medics completa.
         $internment = Internment::findOrFail($id);
-        $internmentMedicId = InternmentMedic::getLastInternmentMedic($id);
-        //dd($internmentMedicId);
-        $medics = Medic::get();
+        //dd($internment);
 
-        return view('internments.edit')->with('internment', $internment)->with('medics', $medics)->with('internmentMedicId', $internmentMedicId->medic_id);
+        //Retorna el ID del Medico y del Psicologo.
+        $internmentMedicId = $internment->lastMedicInternment();
+        $internmentPsychologistId = $internment->lastPsychologistInternment();
+        //dd($internmentPsychologistId);
+        //dd($internmentMedicId);
+        
+        //Devuelve el listado de Médicos y Psicologos
+        $medics = Medic::getMedics();
+        //dd($medics);
+        $psychologists = Medic::getPsychologists();
+        
+        $discharge_types = DischargeType::get();
+        //dd($discharge_types);
+        return view('internments.edit')->with('internment', $internment)->with('medics', $medics)->with('psychologists', $psychologists)->with('internmentMedicId', $internmentMedicId)->with('internmentPsychologistId', $internmentPsychologistId)->with('discharge_types',$discharge_types);
 
     }
 
@@ -186,7 +189,7 @@ class InternmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateInternmentPatientRequest $request, $id)
     {
         //
     }
@@ -199,6 +202,9 @@ class InternmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $internment = Internment::findOrFail($id);
+        $internment->delete();
+
+        return trans('internment.internment_deleted');
     }
 }

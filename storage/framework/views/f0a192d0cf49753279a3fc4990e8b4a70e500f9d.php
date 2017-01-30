@@ -153,6 +153,36 @@
                                 </div>
                             </div>
 
+
+                        <div class="form-group<?php echo e($errors->has('phone') ? ' has-error' : ''); ?>">
+                                <label for="phone" class="col-md-4 control-label"><?php echo app('translator')->get('medic.phone'); ?></label>
+
+                                <div class="col-md-4">
+                                    <input id="phone" type="phone" class="form-control" name="phone" value="<?php echo e($medic->phone); ?>">
+
+                                    <?php if($errors->has('phone')): ?>
+                                        <span class="help-block">
+                                            <strong><?php echo e($errors->first('phone')); ?></strong>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>    
+
+                        <div class="form-group<?php echo e($errors->has('email') ? ' has-error' : ''); ?>">
+                                <label for="email" class="col-md-4 control-label"><?php echo app('translator')->get('medic.email'); ?></label>
+
+                                <div class="col-md-4">
+                                    <input id="email" type="email" class="form-control" name="email" value="<?php echo e($medic->email); ?>">
+
+                                    <?php if($errors->has('email')): ?>
+                                        <span class="help-block">
+                                            <strong><?php echo e($errors->first('email')); ?></strong>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>                            
+
+
                             
                         
                         <div class="form-group">

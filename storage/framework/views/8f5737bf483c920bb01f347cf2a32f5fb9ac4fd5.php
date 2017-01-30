@@ -12,10 +12,12 @@
                 <div class="panel-body">
 
                     <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('/internments')); ?>">
+                        <input type="hidden" name="_method" value="POST" id="_method">
                         <?php echo e(csrf_field()); ?>
 
                         <div class="row">
                              <input id="internment" type="text" name="internment" value="internment" hidden>
+                             <input id="id" type="text" name="id" value="" hidden>
 
                             <div class="col-md-6 form-group<?php echo e($errors->has('first_name') ? ' has-error' : ''); ?>">
                                 <label for="first_name" class="col-md-4 control-label"><?php echo app('translator')->get('patient.first_name'); ?></label>
@@ -263,10 +265,10 @@
 
                     <div class="row">
 
-                        <div class="col-md-6 form-group<?php echo e($errors->has('dni_copy') ? ' has-error' : ''); ?>">
+                        <div class="col-md-4 form-group<?php echo e($errors->has('dni_copy') ? ' has-error' : ''); ?>">
                                 <label for="dni_copy" class="col-md-6 control-label"><?php echo app('translator')->get('patient.dni_copy'); ?></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input id="dni_copy" type="checkbox" class="form-control" name="dni_copy" value="1"
                                     <?php if(!is_null(old('dni_copy'))): ?>
                                         checked    
@@ -280,12 +282,12 @@
                                         </span>
                                     <?php endif; ?>
                                 </div>
-                            </div>
+                        </div>
 
-                        <div class="col-md-6 form-group<?php echo e($errors->has('medical_insurance_copy') ? ' has-error' : ''); ?>">
+                        <div class="col-md-4 form-group<?php echo e($errors->has('medical_insurance_copy') ? ' has-error' : ''); ?>">
                                 <label for="medical_insurance_copy" class="col-md-4 control-label"><?php echo app('translator')->get('patient.medical_insurance_copy'); ?></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input id="medical_insurance_copy" type="checkbox" class="form-control" name="medical_insurance_copy" value="1"
 
                                     <?php if(!is_null(old('medical_insurance_copy'))): ?>
@@ -299,7 +301,20 @@
                                         </span>
                                     <?php endif; ?>
                                 </div>
-                            </div>
+                        </div>
+                        <div class="col-md-4 form-group<?php echo e($errors->has('clinic_history') ? ' has-error' : ''); ?>">
+                                <label for="clinic_history" class="col-md-4 control-label"><?php echo app('translator')->get('patient.clinic_history'); ?></label>
+
+                                <div class="col-md-8">
+                                    <input id="clinic_history" type="text" class="form-control" name="clinic_history"  value="" >
+
+                                    <?php if($errors->has('clinic_history')): ?>
+                                        <span class="help-block">
+                                            <strong><?php echo e($errors->first('clinic_history')); ?></strong>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                        </div>                             
                     </div>
 
                     <br>
@@ -341,6 +356,19 @@
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <div class="col-md-6 form-group<?php echo e($errors->has('mi_affiliate_number') ? ' has-error' : ''); ?>">
+                                <label for="mi_affiliate_number" class="col-md-4 control-label"><?php echo app('translator')->get('patient.mi_affiliate_number'); ?></label>
+
+                                <div class="col-md-6">
+                                    <input id="mi_affiliate_number" type="text" class="form-control" name="mi_affiliate_number" value="<?php echo e(old('mi_affiliate_number')); ?>">
+
+                                    <?php if($errors->has('mi_affiliate_number')): ?>
+                                        <span class="help-block">
+                                            <strong><?php echo e($errors->first('mi_affiliate_number')); ?></strong>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                        </div>
 
                         <div class="col-md-6 form-group<?php echo e($errors->has('coinsurance') ? ' has-error' : ''); ?>">
                             <label for="coinsurance" class="col-md-2 control-label"><?php echo app('translator')->get('patient.coinsurance'); ?></label>
@@ -376,6 +404,19 @@
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <div class="col-md-6 form-group<?php echo e($errors->has('c_affiliate_number') ? ' has-error' : ''); ?>">
+                                <label for="c_affiliate_number" class="col-md-4 control-label"><?php echo app('translator')->get('patient.c_affiliate_number'); ?></label>
+
+                                <div class="col-md-6">
+                                    <input id="c_affiliate_number" type="text" class="form-control" name="c_affiliate_number" value="<?php echo e(old('c_affiliate_number')); ?>">
+
+                                    <?php if($errors->has('c_affiliate_number')): ?>
+                                        <span class="help-block">
+                                            <strong><?php echo e($errors->first('c_affiliate_number')); ?></strong>
+                                        </span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>                          
                     </div>
                     <br>
                         <div class="form-group">

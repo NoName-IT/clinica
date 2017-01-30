@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePatientRequest;
 use App\Http\Requests\UpdatePatientRequest;
+use App\Http\Requests\StoreInternmentPatientRequest;
 use App\Http\Requests;
 use Validator;
 use Laracasts\Flash\Flash;
@@ -54,8 +55,10 @@ class PatientController extends Controller
         $medical_insurances = MedicalInsurance::get();
         $dni_types = DniType::get();
         $cities = City::get();
-
+        //$next_history_clinic = Patient::getNextHistoryClinic();
+        //dd($next_history_clinic);
         return view('patients.create')->with('blood_types', $blood_types)->with('civil_statuses', $civil_statuses)->with('coinsurances', $coinsurances)->with('medical_insurances', $medical_insurances)->with('dni_types', $dni_types)->with('cities', $cities);
+            //->with('next_history_clinic', $next_history_clinic);
     }
 
     /**
@@ -89,7 +92,7 @@ class PatientController extends Controller
              return redirect()->route('patients.index');
     }
     
-    public static function storePatientInternment(StorePatientRequest $request)
+    public static function storeInternmentPatientInternment(StoreInternmentPatientRequest $request)
     {                   //Si viene de una internación..
             $patient = new Patient($request->all());
             $patient->civil_status_id =  $request->civil_status;
@@ -97,6 +100,7 @@ class PatientController extends Controller
             $patient->dni_type_id =  $request->dni_type;
             $patient->save();
 
+            //dd($patient);
             if ($request->medical_insurance){
                 $patient->medical_insurances()->attach($request->medical_insurance, ['initial_date' => Carbon::now()]);
             }
@@ -233,6 +237,86 @@ class PatientController extends Controller
         Flash::success(trans('general.patient_edited'));
         return redirect()->route('patients.index');
     }
+
+    public static function updatePatientInternment(UpdatePatientRequest $request)
+    {                   //Si viene de una internación..
+        $patient = Patient::findOrFail($id);
+        $patient_new = $request->all();
+        $patient->fill($patient_new);
+        $patient->civil_status_id =  $request->civil_status;
+        $patient->blood_type_id =  $request->blood_type;
+        $patient->dni_type_id =  $request->dni_type;
+        
+        if ($request->dni_copy) {
+            $patient->dni_copy = '1';
+        }else{
+            $patient->dni_copy = '0';
+        }
+        if ($request->medical_insurance_copy) {
+            $patient->medical_insurance_copy = '1';
+        }else{
+            $patient->medical_insurance_copy = '0';
+        }
+        $patient->save();
+        $medical_insurance = $patient->medical_insurances()->where('final_date','0000-00-00 00:00:00')->first();
+        if ($request->medical_insurance){
+            
+            if ($medical_insurance){
+                if ($medical_insurance->id != $request->medical_insurance ){
+            
+                    $medical_insurance->pivot->final_date = Carbon::now();
+                    $medical_insurance->pivot->save();
+                    $patient->medical_insurances()->attach($request->medical_insurance, [
+                        'initial_date' => Carbon::now(),
+                        'affiliate_number' => $request->mi_affiliate_number
+                    ]);
+                }else{
+                    $medical_insurance->pivot->affiliate_number = $request->mi_affiliate_number;
+                    $medical_insurance->pivot->save();
+                }
+            }else{
+                $patient->medical_insurances()->attach($request->medical_insurance, [
+                    'initial_date' => Carbon::now(),
+                    'affiliate_number' => $request->mi_affiliate_number
+                ]);
+            }
+        }else{
+            if ($medical_insurance){
+                $medical_insurance->pivot->final_date = Carbon::now();
+                $medical_insurance->pivot->save();
+            }
+        }
+        $coinsurance = $patient->coinsurances()->where('final_date','0000-00-00 00:00:00')->first();
+        if ($request->coinsurance){
+            if ($coinsurance){
+                if ($coinsurance->id != $request->coinsurance ){
+            
+                    $coinsurance->pivot->final_date = Carbon::now();
+                    $coinsurance->pivot->save();
+                    $patient->coinsurances()->attach($request->coinsurance, [
+                        'initial_date' => Carbon::now(),
+                        'affiliate_number' => $request->c_affiliate_number
+                    ]);
+                }else{
+                    $coinsurance->pivot->affiliate_number = $request->c_affiliate_number;
+                    $coinsurance->pivot->save();
+                }
+            }else{
+                $patient->coinsurances()->attach($request->coinsurance, [
+                    'initial_date' => Carbon::now(),
+                    'affiliate_number' => $request->c_affiliate_number
+                ]);
+            }
+            
+        }else{
+            if ($coinsurance){
+                $coinsurance->pivot->final_date = Carbon::now();
+                $coinsurance->pivot->save();
+            }
+        }
+        return $patient;
+    }
+
 
     /**
      * Remove the specified resource from storage.

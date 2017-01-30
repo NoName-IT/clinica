@@ -87,6 +87,7 @@ class FindController extends Controller
 		            						'medical_insurance_copy' => $registro->medical_insurance_copy,
 		            						'medical_insurance' => $patient->get_last_medical_insurance(),
 		            						'coinsurance' => $patient->get_last_medical_coinsurance(),
+		            						'clinic_history' => $patient->clinic_history,
 
 		            					];
 		        	}

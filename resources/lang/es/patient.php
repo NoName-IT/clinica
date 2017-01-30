@@ -33,4 +33,5 @@ return [
     'birth_town' => 'Ciudad de Nacimiento',    
     'mi_affiliate_number' => 'Nro Afiliado',
     'c_affiliate_number' => 'Nro Afiliado',
-];
+    'clinic_history' => 'Historia Clínica',
+]; 

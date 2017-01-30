@@ -177,13 +177,7 @@
                                 <div class="col-md-6">
 
                                     <select class="form-control selectpicker show-tick" name="relationship" data-live-search="true">
-
-                                        <option value=""
-
-                                        @if (is_null(old('relationship')))
-                                            selected    
-                                        @endif
-                                        >@lang('witness.has_no')</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
                                         @foreach( $relationships as $relationship)
 

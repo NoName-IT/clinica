@@ -23,6 +23,8 @@
                     
                     <table class="table table-striped">
                         <thead>
+                            <th><?php echo app('translator')->get('internment.order_number'); ?></th>
+
                             <th><?php echo app('translator')->get('internment.patient_full_name'); ?></th>
                             <th><?php echo app('translator')->get('internment.diagnostic'); ?></th>
                             <th><?php echo app('translator')->get('internment.room'); ?></th>
@@ -36,10 +38,11 @@
                         <tbody> 
                             <?php foreach($internments as $internment): ?>
                                 <tr data-id="<?php echo e($internment->id); ?>">
+                                    <td><?php echo e($internment->id); ?></td>                                
                                     <td><?php echo e($internment->patient->full_name); ?></td>
                                     <td><?php echo e(str_limit($internment->diagnostic, $limit = 20, $end = '...')); ?></td>
                                     <td><?php echo e($internment->room); ?></td>
-                                    <td><?php echo e($internment->clinic_history); ?></td>
+                                    <td><?php echo e($internment->patient->clinic_history); ?></td>
                                     <td>
                                         <a href="<?php echo e(route('internments.edit',$internment->id)); ?>" class="btn btn-warning">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>

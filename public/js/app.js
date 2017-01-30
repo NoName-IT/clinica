@@ -4,6 +4,14 @@
                 format: 'YYYY-MM-DD',
                 locale: 'es'
             });
+            $('#initial_date').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'es'
+            });
+            $('#final_date').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'es'
+            });                        
             $('#birth_time').datetimepicker({
                 format: 'HH:mm',
             });
@@ -113,6 +121,9 @@
                 //$('#dni').val(ui.item.value);
                 //Setea value="" con el ID correspondiente de la localidad para utilizarlo en el POST.
                 //$('#dni').attr('value',ui.item.id);
+                $('#_method').attr('value','PUT');
+                $('#id').attr('value',ui.item.id);    
+
                 $('#first_name').attr('value',ui.item.first_name);
                 $('#last_name').attr('value',ui.item.last_name);
                 $('#birth_date').attr('value',ui.item.birth_date);
@@ -131,6 +142,7 @@
                 $('.selectpicker').selectpicker('refresh');     
                 $('#dni').attr('value',ui.item.dni);
                 $('#town_text').attr('value',ui.item.town_text);
+                $('#clinic_history').attr('value',ui.item.clinic_history);
 
                 $('select[name=dni_copy]').val(ui.item.dni_copy);
                 //$('.selectpicker').selectpicker('refresh');
@@ -140,7 +152,6 @@
 
                 } else {
                     $('#dni_copy').prop('checked', false);
-
                 }
 
 
@@ -149,7 +160,6 @@
 
                 } else {
                     $('#medical_insurance_copy').prop('checked', false);
-
                 }
 
                 $('select[name=medical_insurance]').val(ui.item.medical_insurance);

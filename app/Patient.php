@@ -27,7 +27,7 @@ class Patient extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'birth_date', 'status', 'birth_town', 'birth_time', 'dni_type_id', 'dni', 'street_address', 'town', 'phone', 'blood_type_id', 'dni_copy', 'medical_insurance_copy',
+        'first_name', 'last_name', 'birth_date', 'status', 'birth_town', 'birth_time', 'dni_type_id', 'dni', 'street_address', 'town', 'phone', 'blood_type_id', 'dni_copy', 'medical_insurance_copy', 'clinic_history',
     ];
 
     /**
@@ -94,6 +94,10 @@ class Patient extends Model
         }
         return $id;  
     }
+    public static function getNextHistoryClinic(){
+        return Patient::max('clinic_history') + 1 ;
+    }
+    
     public function paychecks()
     {
         return $this->hasMany('App\Paycheck');

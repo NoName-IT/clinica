@@ -15,11 +15,13 @@ class CreateInternmentsTable extends Migration
         Schema::create('internments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('patient_id')->unsigned();
+            $table->integer('order');
             $table->string('diagnostic');
+            $table->string('diagnostic_2');
             $table->integer('room');
+            $table->integer('discharge_type')->unsigned();
             $table->dateTime('initial_date');
             $table->dateTime('final_date');
-            $table->integer('clinic_history');
             $table->timestamps();
             $table->softDeletes();
 

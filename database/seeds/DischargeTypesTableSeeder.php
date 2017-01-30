@@ -17,7 +17,7 @@ class DischargeTypesTableSeeder extends Seeder
 
         foreach ($discharge_types as $discharge_type) {
         	# code...
-        	factory(App\DischageType::class, 5)->create([
+        	factory(App\DischargeType::class)->create([
 
                         'name'      => $discharge_type,
                     ]);

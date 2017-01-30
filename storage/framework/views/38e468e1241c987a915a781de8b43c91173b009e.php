@@ -22,12 +22,11 @@
                     
                     <table class="table table-striped">
                         <thead>
-                            <th><?php echo app('translator')->get('general.id'); ?></th>
                             <th><?php echo app('translator')->get('general.full_name'); ?></th>
                             <th><?php echo app('translator')->get('general.dni'); ?></th>
                             <th><?php echo app('translator')->get('general.birth_date'); ?></th>
                             <th><?php echo app('translator')->get('general.age'); ?></th>
-                            <th><?php echo app('translator')->get('general.civil_status'); ?></th>
+                            <th><?php echo app('translator')->get('general.clinic_history'); ?></th>
                             <th>
                                 
                             </th>
@@ -37,12 +36,12 @@
                         <tbody> 
                             <?php foreach($patients as $patient): ?>
                                 <tr data-id="<?php echo e($patient->id); ?>">
-                                    <td><?php echo e($patient->id); ?></td>
                                     <td><?php echo e($patient->full_name); ?></td>
                                     <td><?php echo e($patient->dni); ?></td>
                                     <td><?php echo e($patient->birth_date); ?></td>
                                     <td><?php echo e($patient->age); ?></td>
-                                    <td><?php echo e($patient->civil_status->name); ?></td>
+                                    <td><?php echo e($patient->clinic_history); ?></td>
+
 
                                     <td>
                                         <a href="<?php echo e(route('patients.edit',$patient->id)); ?>" class="btn btn-warning">

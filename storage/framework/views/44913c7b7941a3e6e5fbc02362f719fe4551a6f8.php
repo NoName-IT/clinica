@@ -176,13 +176,7 @@
                                 <div class="col-md-6">
 
                                     <select class="form-control selectpicker show-tick" name="relationship" data-live-search="true">
-
-                                        <option value=""
-
-                                        <?php if(is_null(old('relationship'))): ?>
-                                            selected    
-                                        <?php endif; ?>
-                                        ><?php echo app('translator')->get('witness.has_no'); ?></option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 
                                         <?php foreach( $relationships as $relationship): ?>
 

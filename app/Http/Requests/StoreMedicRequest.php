@@ -34,6 +34,8 @@ class StoreMedicRequest extends Request
             'street_address' => 'required|string',
             'cuit' => 'required|unique:medics,cuit,NULL,id,deleted_at,NULL|integer',
             'license' => 'required|unique:medics,license,NULL,id,deleted_at,NULL|integer',
+            'phone' => 'required|max:30',
+            'email' => 'required|email|max:100',
         ];
     }
 }

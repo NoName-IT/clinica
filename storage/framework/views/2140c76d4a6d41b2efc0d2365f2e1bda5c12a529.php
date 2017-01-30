@@ -10,98 +10,67 @@
                     </ol>
                 </div>
                 <div class="panel-body">
-
+                    <?php echo $__env->make('flash::message', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
                     <form class="form-horizontal" role="form" method="POST" action="<?php echo e(url('internments/confirm')); ?>">
 
                         <?php echo e(csrf_field()); ?>
 
 
-                        <input id="internment_id" type="text"  name="internment_id" value="<?php echo e($internment_id); ?>" hidden="">
+                        <input id="internment_id" type="text"  name="internment_id" value="<?php echo e($internment->id); ?>" hidden="">
                         
                         <div class="row">
-                            <div class="row">
-                                <div class="col-md-6 form-group<?php echo e($errors->has('diagnostic') ? ' has-error' : ''); ?>">
-                                    <label for="diagnostic" class="col-md-4 control-label"><?php echo app('translator')->get('internment.diagnostic'); ?></label>
-
-                                    <div class="col-md-8">
-                                        <input id="diagnostic" type="text" class="form-control" name="diagnostic" value="<?php echo e(old('$internment->diagnostic')); ?>">
-
-                                        <?php if($errors->has('diagnostic')): ?>
-                                            <span class="help-block">
-                                                <strong><?php echo e($errors->first('$internment->diagnostic')); ?></strong>
-                                            </span>
-                                        <?php endif; ?>
+                                    <div class="col-md-4 form-group<?php echo e($errors->has('order') ? ' has-error' : ''); ?>">
+                                            <label for="order" class="col-md-6 control-label"><?php echo app('translator')->get('internment.order_number'); ?></label>
+                                            <div class="col-md-8">
+                                                <input id="order" type="text" class="form-control" readonly name="order" value="<?php echo e($internment->order); ?>">
+                                                <?php if($errors->has('order')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('order')); ?></strong>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-6 form-group<?php echo e($errors->has('room') ? ' has-error' : ''); ?>">
-                                    <label for="rootm" class="col-md-2 control-label"><?php echo app('translator')->get('internment.room'); ?></label>
-
-                                    <div class="col-md-8">
-                                        <input id="room" type="text" class="form-control" name="room" value="<?php echo e(old('room')); ?>">
-
-                                        <?php if($errors->has('room')): ?>
-                                            <span class="help-block">
-                                                <strong><?php echo e($errors->first('room')); ?></strong>
-                                            </span>
-                                        <?php endif; ?>
+                                    <div class="col-md-4 form-group<?php echo e($errors->has('order') ? ' has-error' : ''); ?>">
+                                            <label for="order" class="col-md-6 control-label"><?php echo app('translator')->get('internment.clinic_history'); ?></label>
+                                            <div class="col-md-8">
+                                                <input id="order" type="text" class="form-control" readonly name="order" value="<?php echo e($internment->patient->clinic_history); ?>">
+                                                <?php if($errors->has('order')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('order')); ?></strong>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
                                     </div>
-                                </div>
-                            </div>
-                            <br>
-                        <br>
-
+                        </div>
                         <div class="row">
+                                    <div class="col-md-4 form-group<?php echo e($errors->has('name') ? ' has-error' : ''); ?>">
+                                            <label for="name" class="col-md-6 control-label"><?php echo app('translator')->get('internment.patient_full_name'); ?></label>
+                                            <div class="col-md-8">
+                                                <input id="name" type="text" class="form-control" readonly name="name" value="<?php echo e($internment->patient->full_name); ?>">
+                                                <?php if($errors->has('order')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('name')); ?></strong>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                    </div>
 
-                            <div class="col-md-6 form-group<?php echo e($errors->has('clinic_history') ? ' has-error' : ''); ?>">
-                                <label for="clinic_history" class="col-md-4 control-label"><?php echo app('translator')->get('internment.clinic_history'); ?></label>
-                                <div class="col-md-6">
-
-                                    <input id="clinic_history" type="text" class="form-control" name="clinic_history" value="<?php echo e(old('clinic_history')); ?>">
-
-                                    <?php if($errors->has('clinic_history')): ?>
-                                        <span class="help-block">
-                                            <strong><?php echo e($errors->first('clinic_history')); ?></strong>
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="col-md-6 form-group<?php echo e($errors->has('medic') ? ' has-error' : ''); ?>">
-                                <label for="medic" class="col-md-6 control-label"><?php echo app('translator')->get('internment.medic'); ?></label>
-
-                                <div class="col-md-6">
-
-                                    <select class="form-control selectpicker show-tick" name="medic">
-
-                                        <?php foreach($medics as $medic): ?>
-
-                                            <option value="<?php echo e($medic->id); ?>"
-
-                                            <?php if(old('medic') == $medic->id): ?>
-                                                    selected
-                                            <?php endif; ?>
-
-                                            ><?php echo e($medic->full_name); ?></option>
-                                        
-                                        <?php endforeach; ?>
-                                    </select> 
-
-                                    <?php if($errors->has('medic')): ?>
-                                        <span class="help-block">
-                                            <strong><?php echo e($errors->first('medic')); ?></strong>
-                                        </span>
-                                    <?php endif; ?>
-                                </div>
-                        	</div>
-
-                        <br>
-
-                    </div>
-
+                                    <div class="col-md-4 form-group<?php echo e($errors->has('dni') ? ' has-error' : ''); ?>">
+                                            <label for="dni" class="col-md-6 control-label"><?php echo app('translator')->get('general.dni'); ?></label>
+                                            <div class="col-md-8">
+                                                <input id="dni" type="text" class="form-control" readonly name="dni" value="<?php echo e($internment->patient->dni); ?>">
+                                                <?php if($errors->has('dni')): ?>
+                                                    <span class="help-block">
+                                                        <strong><?php echo e($errors->first('dni')); ?></strong>
+                                                    </span>
+                                                <?php endif; ?>
+                                            </div>
+                                    </div>
+                        </div>                        
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <a  class="btn btn-warning" href="<?php echo e(URL::previous()); ?>"> <i class="fa fa-btn fa-undo" ></i> <?php echo app('translator')->get('internment.goback'); ?></a>
-                          
+                                <a  class="btn btn-warning" href="<?php echo e(URL::previous()); ?>"> <i class="fa fa-btn fa-undo" ></i> <?php echo app('translator')->get('internment.goback'); ?></a>                         
                                 <button type="submit" id="complete" onclick="complete()" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> <?php echo app('translator')->get('internment.complete'); ?>
                                 </button> 

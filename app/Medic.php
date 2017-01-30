@@ -17,12 +17,12 @@ class Medic extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'first_name', 'last_name', 'cuit', 'dni', 'medic_type_id', 'license', 'street_address', 'blood_type_id',
+        'first_name', 'last_name', 'cuit', 'dni', 'medic_type_id', 'license', 'street_address', 'blood_type_id', 'phone', 'email',
     ];
 
     public function internments()
     {
-        return $this->belongsToMany('App\Internment');
+        return $this->belongsToMany('App\Internment')->withPivot('initial_date', 'final_date')->withTimestamps();;
     }
 
     public function medic_type()
@@ -38,4 +38,20 @@ class Medic extends Model
     {
         return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
+
+   public static function getMedics()
+    {
+        $medics = Medic::where('medic_type_id','1')->get();
+        //dd($medic);
+        return $medics;
+    }    
+
+   public static function getPsychologists()
+    {
+        $medics = Medic::where('medic_type_id','2')->get();
+        //dd($medic);
+        return $medics;
+    }    
+
+
 }

@@ -35,6 +35,8 @@
      <script type="text/javascript" src="<?php echo asset('bower_components/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'); ?>"></script>
 
     <link rel="stylesheet" href="<?php echo asset('bower_components/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo asset('bower_components/dropzone/dropzone.min.css'); ?>" />
+    <link rel="stylesheet" href="<?php echo asset('bower_components/dropzone/basic.min.css'); ?>" />
 
     <!-- Latest compiled and minified CSS -->
 
@@ -55,7 +57,9 @@
     <script src="<?php echo asset('js/app.js'); ?>"></script>
 
     <script src="<?php echo asset('bower_components/bootstrap/js/bootstrap.min.js'); ?>" defer></script>
-
+    <script src="<?php echo asset('bower_components/dropzone/dropzone-amd-module.min.js'); ?>" defer></script>
+    <script src="<?php echo asset('bower_components/dropzone/dropzone.min.js'); ?>" defer></script>
+    
 
     <style>
         body {
@@ -120,10 +124,10 @@
                         <li><a href="<?php echo e(url('/register')); ?>"><?php echo app('translator')->get('auth.register_tag'); ?></a></li>
                     <?php else: ?>
                         <li role="presentation" class="dropdown">
-                          <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                          <!-- <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                             <i class="fa fa-envelope-o"></i>
                             <span class="badge bg-green">6</span>
-                          </a>
+                          </a> !-->
                           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                             <li>
                               <a>

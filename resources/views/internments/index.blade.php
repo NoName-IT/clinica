@@ -25,6 +25,8 @@
                     
                     <table class="table table-striped">
                         <thead>
+                            <th>@lang('internment.order_number')</th>
+
                             <th>@lang('internment.patient_full_name')</th>
                             <th>@lang('internment.diagnostic')</th>
                             <th>@lang('internment.room')</th>
@@ -38,10 +40,11 @@
                         <tbody> 
                             @foreach($internments as $internment)
                                 <tr data-id="{{ $internment->id }}">
+                                    <td>{{ $internment->id }}</td>                                
                                     <td>{{ $internment->patient->full_name }}</td>
                                     <td>{{ str_limit($internment->diagnostic, $limit = 20, $end = '...') }}</td>
                                     <td>{{ $internment->room }}</td>
-                                    <td>{{ $internment->clinic_history }}</td>
+                                    <td>{{ $internment->patient->clinic_history }}</td>
                                     <td>
                                         <a href="{{ route('internments.edit',$internment->id) }}" class="btn btn-warning">
                                             <i class="fa fa-pencil" aria-hidden="true"></i>

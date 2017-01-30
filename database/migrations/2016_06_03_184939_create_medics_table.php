@@ -22,6 +22,8 @@ class CreateMedicsTable extends Migration
             $table->string('license');
             $table->string('street_address',150);
             $table->integer('blood_type_id')->unsigned();
+            $table->string('phone',30);
+            $table->string('email',100);
             $table->timestamps();
             $table->softDeletes();
 
@@ -34,6 +36,9 @@ class CreateMedicsTable extends Migration
             $table->increments('id');
             $table->integer('internment_id')->unsigned();
             $table->integer('medic_id')->unsigned();
+        
+            $table->dateTime('initial_date');
+            $table->dateTime('final_date');
             
             $table->foreign('internment_id')->references('id')->on('internments');
             $table->foreign('medic_id')->references('id')->on('medics');

@@ -62,11 +62,14 @@ Route::group(['prefix' => 'admin'], function (){
 Route::resource('internments', 'Internment\InternmentController');
 
 Route::resource('patients', 'Patient\PatientController');
+
+
 Route::post( 'internments/confirm',	 ['as' => 'internmentConfirm',
 			 'uses' => 'Internment\InternmentController@confirm']);
 
 Route::post( 'internments/witness',	 ['as' => 'witnessCreate',
 			 'uses' => 'Internment\InternmentController@witness']);
+
 Route::resource('witnesses', 'Witness\WitnessController');
 
 Route::resource('coinsurances', 'Coinsurance\CoinsuranceController');
@@ -80,3 +83,7 @@ Route::get('pdf', 'PdfController@invoice');
 Route::get('find/{clase}/{campo}/{completo}', 'FindController@find');
 Route::get('city/find', 'Address\CityController@find');
 Route::get('city/getCity/{id}', 'Address\CityController@getCity');
+
+//Rutas para el Storage de archivos
+Route::resource('storage', 'StorageController');
+Route::get('storage/formulario', 'StorageController@index');

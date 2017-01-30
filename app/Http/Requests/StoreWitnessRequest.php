@@ -24,15 +24,15 @@ class StoreWitnessRequest extends Request
     public function rules()
     {
         return [
-          /*  'first_name' => 'required|max:20',
-            'last_name' => 'required|max:20',
-            'birth_date' => 'required|date',
-            'dni' => 'required|integer',
-            'street_address' => 'required|string',
-            'phone' => 'required|integer',
-            'dni_type' => 'required|exists:dni_types,id',
-            'relationship' => 'required|exists:relationships,id',
-        */
+            // 'dni' => 'required|integer',
+            // 'dni_type' => 'required|exists:dni_types,id',
+            // 'first_name' => 'required|max:20',
+            // 'last_name' => 'required|max:20',
+            // 'birth_date' => 'required|date',
+            // 'street_address' => 'required|string',
+            // 'phone' => 'required|integer',
+            // 'relationship' => 'required|exists:relationships,id',
+    
         ];
     }
 }

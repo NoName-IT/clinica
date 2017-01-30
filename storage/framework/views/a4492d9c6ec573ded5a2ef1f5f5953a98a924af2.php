@@ -29,7 +29,7 @@
                             <th><?php echo app('translator')->get('medic.cuit'); ?></th>
                             <th><?php echo app('translator')->get('medic.dni'); ?></th>
                             <th><?php echo app('translator')->get('medic.license'); ?></th>
-                            <th><?php echo app('translator')->get('medic.blood_type'); ?></th>
+                            <th><?php echo app('translator')->get('medic.phone'); ?></th>
                             <th>
                                 
                             </th>
@@ -45,7 +45,7 @@
                                     <td><?php echo e($medic->cuit); ?></td>
                                     <td><?php echo e($medic->dni); ?></td>
                                     <td><?php echo e($medic->license); ?></td>
-                                    <td><?php echo e($medic->blood_type->name); ?></td>
+                                    <td><?php echo e($medic->phone); ?></td>
 
                                     <td>
                                         <a href="<?php echo e(route('medics.edit',$medic->id)); ?>" class="btn btn-warning">

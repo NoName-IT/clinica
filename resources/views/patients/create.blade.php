@@ -14,10 +14,11 @@
 
                 <div class="panel-body">
 
+
+
                    	<form class="form-horizontal" role="form" method="POST" action="{{ url('/patients') }}">
                         {{ csrf_field() }}
                         <div class="row">
-                            
                             <div class="col-md-6 form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                 <label for="first_name" class="col-md-4 control-label">@lang('patient.first_name')</label>
 
@@ -264,7 +265,7 @@
 
                     <div class="row">
 
-                        <div class="col-md-6 form-group{{ $errors->has('dni_copy') ? ' has-error' : '' }}">
+                        <div class="col-md-4 form-group{{ $errors->has('dni_copy') ? ' has-error' : '' }}">
                                 <label for="dni_copy" class="col-md-6 control-label">@lang('patient.dni_copy')</label>
 
                                 <div class="col-md-6">
@@ -283,7 +284,7 @@
                                 </div>
                             </div>
 
-                        <div class="col-md-6 form-group{{ $errors->has('medical_insurance_copy') ? ' has-error' : '' }}">
+                        <div class="col-md-4 form-group{{ $errors->has('medical_insurance_copy') ? ' has-error' : '' }}">
                                 <label for="medical_insurance_copy" class="col-md-4 control-label">@lang('patient.medical_insurance_copy')</label>
 
                                 <div class="col-md-6">
@@ -301,6 +302,19 @@
                                     @endif
                                 </div>
                             </div>
+                       <div class="col-md-4 form-group{{ $errors->has('clinic_history') ? ' has-error' : '' }}">
+                            <label for="clinic_history" class="col-md-4 control-label">@lang('patient.clinic_history')</label>
+
+                            <div class="col-md-8">
+                                <input id="clinic_history" type="text" class="form-control" name="clinic_history" value="" >
+
+                                @if ($errors->has('clinic_history'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('clinic_history') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>                            
                     </div>
 
                     <br>

@@ -31,7 +31,7 @@
                             <th>@lang('medic.cuit')</th>
                             <th>@lang('medic.dni')</th>
                             <th>@lang('medic.license')</th>
-                            <th>@lang('medic.blood_type')</th>
+                            <th>@lang('medic.phone')</th>
                             <th>
                                 
                             </th>
@@ -47,7 +47,7 @@
                                     <td>{{ $medic->cuit }}</td>
                                     <td>{{ $medic->dni }}</td>
                                     <td>{{ $medic->license }}</td>
-                                    <td>{{ $medic->blood_type->name }}</td>
+                                    <td>{{ $medic->phone }}</td>
 
                                     <td>
                                         <a href="{{ route('medics.edit',$medic->id) }}" class="btn btn-warning">

@@ -35,6 +35,7 @@ $factory->define(App\Patient::class, function (Faker\Generator $faker) {
         'phone'             => $faker->e164PhoneNumber,
         'blood_type_id'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
         'dni_copy'          => $faker->boolean,
+        'clinic_history'    => $faker->unique()->numberBetween(25345,60123),        
         'medical_insurance_copy' => $faker->boolean,
         'status' => $faker->boolean,
     ];
@@ -84,6 +85,13 @@ $factory->define(App\CoinsurancePatient::class, function (Faker\Generator $faker
     ];
 });
 
+$factory->define(App\InternmentMedic::class, function (Faker\Generator $faker) {
+
+    return [
+        'initial_date' => $faker->dateTimeThisYear,
+    ];
+});
+
 $factory->define(App\Paycheck::class, function (Faker\Generator $faker) {
 
     return [
@@ -106,9 +114,11 @@ $factory->define(App\Paycheck::class, function (Faker\Generator $faker) {
 $factory->define(App\Internment::class, function (Faker\Generator $faker) {
 
     return [
+        'order' =>  $faker->unique->numberBetween(1,500),
+        'discharge_type' => $faker->randomElement($array = array (1,5)),
         'diagnostic' => $faker->catchPhrase,
+        'diagnostic_2' => $faker->catchPhrase,
         'room' => $faker->numberBetween(1,100),
-        'clinic_history' => $faker->unique()->numberBetween(25345,60123),
         //'initial_date' => $faker->dateTimeThisYear,
         'initial_date' => $faker->dateTimeThisDecade,
         //'final_date' => date('Y-m-d H:i:s', strtotime($initial_date. " + ".$faker->numberBetween(50,100)." days"))."\n",
@@ -151,8 +161,9 @@ $factory->define(App\Medic::class, function (Faker\Generator $faker) {
         'dni'               => $faker->numberBetween(9500000,45000000),
         'license'           => $faker->numberBetween(111111,9999999),
         'street_address'    => $faker->streetAddress,
-        'blood_type_id'        => $faker->randomElement($array = array (1,2,3,4,5,6)),
-
+        'blood_type_id'     => $faker->randomElement($array = array (1,2,3,4,5,6)),
+        'phone'             => $faker->e164PhoneNumber,
+        'email'             => $faker->safeEmail,
     ];
 });
 
@@ -196,7 +207,14 @@ $factory->define(App\DniType::class, function (Faker\Generator $faker) {
 
 $factory->define(App\DischargeType::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->unique()->randomElement($array = array ('Alta Médica', 'Contra Opinión', 'Derivado', 'Óbito', 'Fuga')),
+        'name'         => $faker->unique()->randomElement($array = array ('Alta Médica', 'Contra Opinión', 'Derivado', 'Óbito', 'Fuga')),
 
+    ];
+});
+
+$factory->define(App\Diagnostic::class, function (Faker\Generator $faker) {
+    return [
+        'code' => $faker->name,
+        'description' => $faker->name   
     ];
 });

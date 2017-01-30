@@ -33,7 +33,8 @@ return [
     'medic_created' => 'Médico creado exitosamente!!!',
     'medic_deleted' => 'Médico eliminado exitosamente!!!',
     'type' => 'Nombre',
-    'id' => 'Identificacón',
-     
+    'id' => 'Identificación',
+    'phone' => 'Teléfono',
+    'email' => 'Email',
     
 ];

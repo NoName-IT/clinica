@@ -258,17 +258,17 @@
                                             </span>
                                         <?php endif; ?>
                                     </div>
-                                </div>
+                            </div>
                         </div>
 
                         <br>
 
                         <div class="row">
 
-                        <div class="col-md-6 form-group<?php echo e($errors->has('dni_copy') ? ' has-error' : ''); ?>">
+                        <div class="col-md-4 form-group<?php echo e($errors->has('dni_copy') ? ' has-error' : ''); ?>">
                                 <label for="dni_copy" class="col-md-6 control-label"><?php echo app('translator')->get('patient.dni_copy'); ?></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input id="dni_copy" type="checkbox" class="form-control" name="dni_copy" value="                                    
                                     <?php if($patient->dni_copy == 1): ?>
                                         1
@@ -287,10 +287,10 @@
                                 </div>
                             </div>
 
-                        <div class="col-md-6 form-group<?php echo e($errors->has('medical_insurance_copy') ? ' has-error' : ''); ?>">
+                            <div class="col-md-4 form-group<?php echo e($errors->has('medical_insurance_copy') ? ' has-error' : ''); ?>">
                                 <label for="medical_insurance_copy" class="col-md-4 control-label"><?php echo app('translator')->get('patient.medical_insurance_copy'); ?></label>
 
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <input id="medical_insurance_copy" type="checkbox" class="form-control" name="medical_insurance_copy" value="
                                     <?php if($patient->medical_insurance_copy == 1): ?>
                                         1
@@ -308,6 +308,19 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
+                            <div class="col-md-4 form-group<?php echo e($errors->has('clinic_history') ? ' has-error' : ''); ?>">
+                                    <label for="clinic_history" class="col-md-4 control-label"><?php echo app('translator')->get('patient.clinic_history'); ?></label>
+
+                                    <div class="col-md-4">
+                                        <input id="clinic_history" type="text" class="form-control" name="clinic_history" value="<?php echo e($patient->clinic_history); ?>" disabled="">
+
+                                        <?php if($errors->has('clinic_history')): ?>
+                                            <span class="help-block">
+                                                <strong><?php echo e($errors->first('clinic_history')); ?></strong>
+                                            </span>
+                                        <?php endif; ?>
+                                    </div>
+                            </div>                            
                         </div>
 
                         <br>

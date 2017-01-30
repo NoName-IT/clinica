@@ -96,5 +96,6 @@ return [
     'discharge_type_edited' => 'Tipo Alta editado exitosamente!!!',
     'discharge_types' => 'Tipo Alta',
     'create_discharge_type' => 'Crear Tipo Alta',
+    'clinic_history' => 'Historia Clínica',
 
 ];

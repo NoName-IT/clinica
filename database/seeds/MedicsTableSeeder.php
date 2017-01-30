@@ -47,9 +47,17 @@ class MedicsTableSeeder extends Seeder
 
         $internments = App\Internment::get();
 
+        $medicsArray = DB::select('SELECT id FROM medics');
         foreach ($internments as $internment) {
-        	# code...
-        	$internment->medics()->attach($faker->randomElement($array_medic_types));
+            //dd($internment->medics());
+            $initial_date = $internment->initial_date;
+            # code...
+           
+            $final_date = date('Y-m-d H:i:s', strtotime($initial_date. " + ".$faker->numberBetween(50,100)." days"))."\n";
+
+        	$internment->medics()->attach($faker->randomElement($medicsArray),
+                                        ['final_date' => $final_date, 'initial_date' => $initial_date]
+                                        );
         }
 
         
